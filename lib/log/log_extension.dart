@@ -18,12 +18,11 @@ extension LogExtension on Log {
 
   /// user message receiver
   /// and converting purpose Logcat implementation.
-  static String convert({
-    required String tag,
-    required String message,
-    required LogType logType,
-    required bool path
-  }) {
+  static String convert(
+      {required String tag,
+      required String message,
+      required LogType logType,
+      required bool path}) {
     RegExp regExp = RegExp(_regExp);
     Match? match = regExp.firstMatch(_getFrame());
 

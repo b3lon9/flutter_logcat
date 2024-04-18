@@ -1,3 +1,6 @@
+## 1.0.4
+* re-fix dart format 2 issues.
+
 ## 1.0.3
 * fix dart score 2 issues.
 
