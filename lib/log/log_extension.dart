@@ -43,11 +43,21 @@ extension LogExtension on Log {
   static String _ansiEscape(LogType logType) {
     String escapeSequence = _endSequence;
     switch (logType) {
-      case LogType.verbose:   escapeSequence = _verboseSequence;  break;
-      case LogType.information:   escapeSequence = _informationSequence;  break;
-      case LogType.debug:   escapeSequence = _debugSequence;  break;
-      case LogType.warning:   escapeSequence = _warningSequence;  break;
-      case LogType.error:   escapeSequence = _errorSequence;  break;
+      case LogType.verbose:
+        escapeSequence = _verboseSequence;
+        break;
+      case LogType.information:
+        escapeSequence = _informationSequence;
+        break;
+      case LogType.debug:
+        escapeSequence = _debugSequence;
+        break;
+      case LogType.warning:
+        escapeSequence = _warningSequence;
+        break;
+      case LogType.error:
+        escapeSequence = _errorSequence;
+        break;
     }
 
     return escapeSequence;
@@ -65,4 +75,3 @@ const String _informationSequence = "\x1B[92m";
 const String _debugSequence = "\x1B[94m";
 const String _warningSequence = "\x1B[93m";
 const String _errorSequence = "\x1B[91m";
-
