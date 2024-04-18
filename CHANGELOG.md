@@ -1,3 +1,6 @@
+## 1.0.2
+* fix remove gap tag and className
+
 ## 1.0.1
 * release mode.
 

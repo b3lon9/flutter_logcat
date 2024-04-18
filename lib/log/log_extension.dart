@@ -28,11 +28,11 @@ extension LogExtension on Log {
     Match? match = regExp.firstMatch(_getFrame());
 
     if (match != null) {
-      final tagName = tag.isNotEmpty ? "($tag)" : "";
+      final tagName = tag.isNotEmpty ? "($tag) " : "";
       final className = match.group(1);
       final filePath = path ? "(${match.group(2)})" : "";
       final lineNumber = match.group(3);
-      return "${_ansiEscape(logType)}$tagName [$className$filePath:$lineNumber] $message$_endSequence";
+      return "${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $message$_endSequence";
     } else {
       return message;
     }
