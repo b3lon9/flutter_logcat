@@ -1,7 +1,1 @@
-enum LogType {
-  verbose,
-  information,
-  debug,
-  warning,
-  error
-}
+enum LogType { verbose, information, debug, warning, error }
