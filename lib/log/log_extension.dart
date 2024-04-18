@@ -55,8 +55,8 @@ extension LogExtension on Log {
 }
 
 // regexp
-@Deprecated("don't use this. StackTrace catch another.")
-const String _regBuildExp = r'(\w+)\.build.*package:([^:]+):(\d+):';
+// @Deprecated("don't use this. StackTrace catch another.")
+// const String _regBuildExp = r'(\w+)\.build.*package:([^:]+):(\d+):';
 const String _regExp = r'(\w+)\..*package:([^:]+):(\d+):';
 
 const String _endSequence = "\x1B[0m";

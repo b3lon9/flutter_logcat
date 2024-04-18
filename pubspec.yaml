@@ -1,7 +1,7 @@
 name: flutter_logcat
 description: "you can distribute check Log on Flutter's console. very simple usage!"
-version: 0.0.1
-homepage: https://donguran.com/pages/flutter_logcat
+version: 1.0.1
+homepage: https://donguran.com/pages/flutterlogcat
 repository: https://github.com/b3lon9/flutter_logcat
 
 environment:
