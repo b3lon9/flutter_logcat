@@ -1,3 +1,7 @@
+## 1.0.7
+* hope this commit is last :).
+* add kind description.
+
 ## 1.0.6
 * add description README.
 * specify LICENSE into classes.
