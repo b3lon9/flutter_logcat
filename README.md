@@ -1,30 +1,37 @@
-![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/bd08bd47-96f2-4805-a5aa-0fd4451095b5)
+![flutter_logcat_transparent](https://github.com/b3lon9/flutter_logcat/assets/119420119/0493edfd-c9e2-4bb3-b7fd-706d7ecd4977)
 
-# Flutter (console)Logcat Filter
+
+## 
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_logcat?color=blue)](https://pub.dev/packages/flutter_logcat)
 
 <br/>
 
-<b>tool</b>🤍 <b>useful</b>💚 <b>simple</b>💙 <b>easy</b>💛 <b>like</b>❤
+💘 <b>tool</b>🤍 <b>useful</b>💚 <b>simple</b>💙 <b>easy</b>💛 <b>like</b>💖
 
 <br/>
 
 <img src="https://github.com/b3lon9/flutter_logcat/assets/119420119/d5310fff-c4f2-4d9f-b37a-fcb283b814aa" alt="image" width="50%" height="50%">
 
-## add
-```shell
-flutter pub add flutter_logcat
-```
+## 🚀struct
+`flutter_logcat` need parameters are `message`, `tag`, `path`  <br/><br/>
+- `message` : if yon want input message to watch on console.  <br/>
+- `tag`: this is when you define something tag name.  <br/>
+- `path`: if you define true, you can watch file preference path. (default: false) <br/><br/>
+
+
+### 💌console print 
+
+| message            | tag                | path               | output              |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| :heavy_check_mark: | :x:                | :x:                | `[className:lineNumber] message` |
+| :heavy_check_mark: | :heavy_check_mark: | :x:                | `(tag) [className:lineNumber] message` |
+| :heavy_check_mark: | :x:                | :heavy_check_mark: | `[className(packageName/className.dart):lineNumber] message` |
+| :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | `(tag) [className(packageName/className.dart):lineNumber] message` |
+
 <br/>
 
-## import
-```dart
-import 'package:flutter_logcat/flutter_logcat.dart'
-```
-<br/>
-
-## usage
+## 🌟usage
 
 - normal <br/>
 result > `[_ExampleScreenState:30] message`
