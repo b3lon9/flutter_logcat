@@ -1,12 +1,16 @@
-# flutter_logcat
-Flutter (console)Logcat Filter
+![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/bd08bd47-96f2-4805-a5aa-0fd4451095b5)
+
+# Flutter (console)Logcat Filter
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_logcat?color=blue)](https://pub.dev/packages/flutter_logcat)
 
 <br/>
+
+<b>tool</b>🤍 <b>useful</b>💚 <b>simple</b>💙 <b>easy</b>💛 <b>like</b>❤
+
 <br/>
 
-![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/d5310fff-c4f2-4d9f-b37a-fcb283b814aa)
+<img src="https://github.com/b3lon9/flutter_logcat/assets/119420119/d5310fff-c4f2-4d9f-b37a-fcb283b814aa" alt="image" width="50%" height="50%">
 
 ## add
 ```shell
