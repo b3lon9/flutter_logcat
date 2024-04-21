@@ -1,3 +1,6 @@
+## 1.0.8
+* fix available on iOS
+
 ## 1.0.7
 * hope this commit is last :).
 * add kind description.
