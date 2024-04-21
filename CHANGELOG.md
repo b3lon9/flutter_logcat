@@ -1,3 +1,6 @@
+## 1.0.9
+* remove license content of description.
+
 ## 1.0.8
 * fix available on iOS
 
