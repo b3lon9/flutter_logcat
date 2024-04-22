@@ -14,7 +14,7 @@
 <img src="https://github.com/b3lon9/flutter_logcat/assets/119420119/d5310fff-c4f2-4d9f-b37a-fcb283b814aa" alt="image" width="50%" height="50%">
 
 ## 🚀 struct
-`flutter_logcat` need parameters are `message`, `tag`, `path`  <br/><br/>
+`flutter_logcat` need only three parameters there are `message`, `tag`, `path`  <br/><br/>
 - `message` : if yon want input message to watch on console.  <br/>
 - `tag`: this is when you define something tag name.  <br/>
 - `path`: if you define true, you can watch file preference path. (default: false) <br/><br/>

@@ -1,3 +1,6 @@
+## 1.1.0
+* block Log class can not create constructor.
+
 ## 1.0.9
 * remove license content of description.
 

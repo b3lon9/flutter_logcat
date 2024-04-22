@@ -27,6 +27,8 @@ import 'package:flutter_logcat/log/log_type.dart';
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 /// SOFTWARE.
 class Log {
+  Log._();
+
   /// [v] : verbose
   /// V (Verbose): Lowest priority level used for debugging purposes,
   /// providing the most extensive amount of logs.
