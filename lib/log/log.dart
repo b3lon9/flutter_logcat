@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_logcat/log/log_extension.dart';
-import 'package:flutter_logcat/log/log_type.dart';
+import 'log_extension.dart';
+import 'log_type.dart';
 
 /// MIT License
 ///

@@ -1,3 +1,6 @@
+## 1.1.1
+* change path
+
 ## 1.1.0
 * block Log class can not create constructor.
 

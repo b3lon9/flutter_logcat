@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_logcat/flutter_logcat.dart';
+import 'package:flutter_logcat/log/log.dart';
 
 void main() {
   runApp(const MaterialApp(home: Scaffold(body: ExampleScreen())));

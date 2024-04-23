@@ -1,5 +1,5 @@
-import 'package:flutter_logcat/log/log.dart';
-import 'package:flutter_logcat/log/log_type.dart';
+import 'log.dart';
+import 'log_type.dart';
 
 /// MIT License
 ///
