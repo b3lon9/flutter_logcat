@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 import 'log_extension.dart';
 import 'log_type.dart';
@@ -28,6 +28,18 @@ import 'log_type.dart';
 /// SOFTWARE.
 class Log {
   Log._();
+
+  /// [_visible] is console print Log visible.
+  static bool _visible = true;
+
+
+  /// this function setting external control _visible property.
+  /// if you want don't see the console Log.
+  /// you can use this function [configure] and [visible] parameter
+  /// set kDebugMode or 'false'
+  static void configure({required bool visible}) {
+    _visible = visible;
+  }
 
   /// [v] : verbose
   /// V (Verbose): Lowest priority level used for debugging purposes,
@@ -64,10 +76,12 @@ class Log {
           tag: tag, message: message, logType: LogType.error, path: path));
 
   static void _consoleOutput(String log) {
-    if (Platform.isAndroid) {
-      debugPrint(log);
-    } else {
-      stdout.writeln(log);
+    if (_visible) {
+      if (Platform.isAndroid) {
+        debugPrint(log);
+      } else {
+        stdout.writeln(log);
+      }
     }
   }
 }
