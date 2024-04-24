@@ -32,7 +32,6 @@ class Log {
   /// [_visible] is console print Log visible.
   static bool _visible = true;
 
-
   /// this function setting external control _visible property.
   /// if you want don't see the console Log.
   /// you can use this function [configure] and [visible] parameter

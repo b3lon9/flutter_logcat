@@ -1,3 +1,6 @@
+## 1.1.3
+* dart format to perfect score.
+
 ## 1.1.2
 * add 'configure' function.
 
