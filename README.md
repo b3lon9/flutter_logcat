@@ -7,6 +7,14 @@
 
 <br/>
 
+
+
+**when you click like💗 this library, I am very very gratulation.** <br/>
+**when you click github😺 follow, I am very very very happy.** <br/>
+**when you click star⭐ my repository, I am very very energized**  <br/>
+
+---
+
 💘 <b>tool</b>🤍 <b>useful</b>💚 <b>simple</b>💙 <b>easy</b>💛 <b>like</b>💖
 
 <br/>
@@ -33,8 +41,15 @@
 
 ## 🌟 usage
 
-- normal <br/>
-result > `[_ExampleScreenState:30] message`
+- control visible👀 to Log.
+```dart
+import 'package:flutter/foundation.dart';
+
+Log.configure(visible: kDebugMode);
+```
+<br/>
+
+- only message <br/>
 ```dart
 Log.v("message");
 Log.i("message");
@@ -42,9 +57,10 @@ Log.d("message");
 Log.w("message");
 Log.e("message");
 ```
+> [_ExampleScreenState:30] message
+<br/>
 
-- add 'path' (default: false, type - bool) <br/>
-result > `[_ExampleScreenState(example/main.dart):35] message`
+- 'path' parameter put true <br/>
 ```dart
 Log.v("message", path: true);
 Log.i("message", path: true);
@@ -52,9 +68,10 @@ Log.d("message", path: true);
 Log.w("message", path: true);
 Log.e("message", path: true);
 ```
+> [_ExampleScreenState(example/main.dart):35] message
+<br/>
 
-- add 'tag' (type - String) <br/>
-result > `(donguran) [_ExampleScreenState(example/main.dart):48] message`
+- 'tag' parameter (type - String) <br/>
 ```dart
 Log.v("message", tag: "donguran");
 Log.i("message", tag: "donguran");
@@ -62,6 +79,7 @@ Log.d("message", tag: "donguran");
 Log.w("message", tag: "donguran");
 Log.e("message", tag: "donguran");
 ```
+> (donguran) [_ExampleScreenState(example/main.dart):48] message
 
 
 <br/>
