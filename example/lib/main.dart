@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_logcat/flutter_logcat.dart';
 
 void main() {
+  Log.configure(visible: kDebugMode);
+
   runApp(const MaterialApp(home: Scaffold(body: ExampleScreen())));
 }
 
@@ -23,7 +25,6 @@ class _ExampleScreenState extends State<ExampleScreen> {
   @override
   void initState() {
     super.initState();
-    Log.configure(visible: kDebugMode);
 
     Log.v("initState.. verbose..");
     Log.i("initState.. information..");

@@ -11,7 +11,7 @@
 
 **when you click like💗 this library, I am very very gratulation.** <br/>
 **when you click github😺 follow, I am very very very happy.** <br/>
-**when you click star⭐ my repository, I am very very energized**  <br/>
+**when you click star⭐ my repository, I am realy realy energized**  <br/>
 
 ---
 
