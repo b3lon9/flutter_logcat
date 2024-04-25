@@ -1,3 +1,6 @@
+## 1.1.5
+* fix description example source.
+
 ## 1.1.4
 * add `tag` parameter into 'configure' function.
 
