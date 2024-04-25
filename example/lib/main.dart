@@ -4,6 +4,7 @@ import 'package:flutter_logcat/flutter_logcat.dart';
 
 void main() {
   Log.configure(visible: kDebugMode);
+ // Log.configure(visible: kDebugMode, tag: "donguran");
 
   runApp(const MaterialApp(home: Scaffold(body: ExampleScreen())));
 }
@@ -27,7 +28,7 @@ class _ExampleScreenState extends State<ExampleScreen> {
     super.initState();
 
     Log.v("initState.. verbose..");
-    Log.i("initState.. information..");
+    Log.i("initState.. information..", tag: "another");
     Log.d("initState.. debug..");
     Log.w("initState.. warning..");
     Log.e("initState.. error..");

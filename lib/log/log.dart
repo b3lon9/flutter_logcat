@@ -32,12 +32,16 @@ class Log {
   /// [_visible] is console print Log visible.
   static bool _visible = true;
 
+  /// [_tag] default tag setting.
+  static String _tag = "";
+
   /// this function setting external control _visible property.
   /// if you want don't see the console Log.
   /// you can use this function [configure] and [visible] parameter
   /// set kDebugMode or 'false'
-  static void configure({required bool visible}) {
+  static void configure({required bool visible, String tag = ""}) {
     _visible = visible;
+    _tag = tag;
   }
 
   /// [v] : verbose
@@ -45,13 +49,16 @@ class Log {
   /// providing the most extensive amount of logs.
   static void v(String message, {String tag = "", bool path = false}) =>
       _consoleOutput(LogExtension.convert(
-          tag: tag, message: message, logType: LogType.verbose, path: path));
+          tag: tag.isEmpty ? _tag : tag,
+          message: message,
+          logType: LogType.verbose,
+          path: path));
 
   /// [i] : information
   /// Informational logs indicating the app's execution state.
   static void i(String message, {String tag = "", bool path = false}) =>
       _consoleOutput(LogExtension.convert(
-          tag: tag,
+          tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.information,
           path: path));
@@ -60,19 +67,28 @@ class Log {
   /// Debugging logs helpful during development, omitted from release builds.
   static void d(String message, {String tag = "", bool path = false}) =>
       _consoleOutput(LogExtension.convert(
-          tag: tag, message: message, logType: LogType.debug, path: path));
+          tag: tag.isEmpty ? _tag : tag,
+          message: message,
+          logType: LogType.debug,
+          path: path));
 
   /// [w] : warning
   /// Warning logs signaling potential issues that may not impact the app's execution.
   static void w(String message, {String tag = "", bool path = false}) =>
       _consoleOutput(LogExtension.convert(
-          tag: tag, message: message, logType: LogType.warning, path: path));
+          tag: tag.isEmpty ? _tag : tag,
+          message: message,
+          logType: LogType.warning,
+          path: path));
 
   /// [e] : error
   /// Error logs indicating errors that occurred during execution.
   static void e(String message, {String tag = "", bool path = false}) =>
       _consoleOutput(LogExtension.convert(
-          tag: tag, message: message, logType: LogType.error, path: path));
+          tag: tag.isEmpty ? _tag : tag,
+          message: message,
+          logType: LogType.error,
+          path: path));
 
   static void _consoleOutput(String log) {
     if (_visible) {
