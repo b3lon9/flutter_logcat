@@ -71,6 +71,37 @@ class _ExampleScreenState extends State<ExampleScreen> {
             },
             child: const Text("error"),
           ),
+          const Divider(),
+          ElevatedButton(
+            onPressed: () {
+              Log.v("message");
+              Log.i("message");
+              Log.d("message");
+              Log.w("message");
+              Log.e("message");
+            },
+            child: const Text("only message"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Log.v("message", path: true);
+              Log.i("message", path: true);
+              Log.d("message", path: true);
+              Log.w("message", path: true);
+              Log.e("message", path: true);
+            },
+            child: const Text("put 'path' parameter"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Log.v("message", tag: "donguran");
+              Log.i("message", tag: "donguran");
+              Log.d("message", tag: "donguran");
+              Log.w("message", tag: "donguran");
+              Log.e("message", tag: "donguran");
+            },
+            child: const Text("put 'tag' parameter"),
+          )
         ],
       ),
     );
