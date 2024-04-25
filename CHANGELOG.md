@@ -1,3 +1,6 @@
+## 1.1.4
+* add `tag` parameter into 'configure' function.
+
 ## 1.1.3
 * dart format to perfect score.
 
