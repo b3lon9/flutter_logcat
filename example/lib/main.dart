@@ -28,7 +28,7 @@ class _ExampleScreenState extends State<ExampleScreen> {
     super.initState();
 
     Log.v("initState.. verbose..");
-    Log.i("initState.. information..", tag: "another");
+    Log.i("initState.. information..");
     Log.d("initState.. debug..");
     Log.w("initState.. warning..");
     Log.e("initState.. error..");
