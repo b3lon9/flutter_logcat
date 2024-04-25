@@ -47,6 +47,17 @@ import 'package:flutter/foundation.dart';
 
 Log.configure(visible: kDebugMode);
 ```
+- if you want setting default `tag`
+```dart
+Log.configure(visible: kDebugMode, tag: "donguran");
+
+Log.v(...);
+Log.i(...);
+...
+```
+> ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/db63624a-1cb5-4fa7-b144-73d2fb888c94)
+
+
 <br/>
 
 - only message <br/>
@@ -57,7 +68,9 @@ Log.d("message");
 Log.w("message");
 Log.e("message");
 ```
-> [_ExampleScreenState:30] message
+> [_ExampleScreenState:30] message <br/>
+> ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/82037217-3c75-4717-bd0a-cdf0ebc96113)
+
 <br/>
 
 - 'path' parameter put true <br/>
@@ -68,7 +81,10 @@ Log.d("message", path: true);
 Log.w("message", path: true);
 Log.e("message", path: true);
 ```
-> [_ExampleScreenState(example/main.dart):35] message
+> [_ExampleScreenState(example/main.dart):35] message <br/>
+> ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/956257d5-8722-4828-8d23-5170aafbf7f2)
+
+
 <br/>
 
 - 'tag' parameter (type - String) <br/>
@@ -79,7 +95,8 @@ Log.d("message", tag: "donguran");
 Log.w("message", tag: "donguran");
 Log.e("message", tag: "donguran");
 ```
-> (donguran) [_ExampleScreenState(example/main.dart):48] message
+> (donguran) [_ExampleScreenState(example/main.dart):48] message <br/>
+> ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/db63624a-1cb5-4fa7-b144-73d2fb888c94)
 
 
 <br/>
