@@ -1,3 +1,6 @@
+## 1.1.6
+* fix private folder path.
+
 ## 1.1.5
 * fix description example source.
 
