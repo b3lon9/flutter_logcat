@@ -41,13 +41,15 @@
 
 ## 🌟 usage
 
-- control visible👀 to Log.
+- control visible👀 to Log. <br/>
+**`Log.configure(visible: [Boolean])`**
 ```dart
 import 'package:flutter/foundation.dart';
 
 Log.configure(visible: kDebugMode);
 ```
-- if you want setting default `tag`
+- if you want setting default `tag` <br/>
+**`Log.configure(visible: [Boolean], tag: [String])`**
 ```dart
 Log.configure(visible: kDebugMode, tag: "donguran");
 
@@ -61,6 +63,7 @@ Log.i(...);
 <br/>
 
 - only message <br/>
+**`Log.v([String]);`**
 ```dart
 Log.v("message");
 Log.i("message");
@@ -69,11 +72,13 @@ Log.w("message");
 Log.e("message");
 ```
 > [_ExampleScreenState:30] message <br/>
-> ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/82037217-3c75-4717-bd0a-cdf0ebc96113)
+> ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/e2900c8a-c947-4d59-a575-631d5a387565)
+
 
 <br/>
 
 - 'path' parameter put true <br/>
+**`Log.v([String], path: [Boolean])`**
 ```dart
 Log.v("message", path: true);
 Log.i("message", path: true);
@@ -82,12 +87,14 @@ Log.w("message", path: true);
 Log.e("message", path: true);
 ```
 > [_ExampleScreenState(example/main.dart):35] message <br/>
-> ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/956257d5-8722-4828-8d23-5170aafbf7f2)
+> ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/a90df6ba-bb6a-45da-bc62-c351ea45f1e3)
+
 
 
 <br/>
 
-- 'tag' parameter (type - String) <br/>
+- 'tag' parameter <br/>
+**`Log.v([String], tag: [String])`**
 ```dart
 Log.v("message", tag: "donguran");
 Log.i("message", tag: "donguran");
@@ -96,7 +103,8 @@ Log.w("message", tag: "donguran");
 Log.e("message", tag: "donguran");
 ```
 > (donguran) [_ExampleScreenState(example/main.dart):48] message <br/>
-> ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/db63624a-1cb5-4fa7-b144-73d2fb888c94)
+> ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/691effe8-f208-4d49-a500-80e8e8d206b5)
+
 
 
 <br/>
