@@ -52,8 +52,14 @@ extension LogExtension on Log {
       final className = match.group(1);
       final filePath = path ? "(${match.group(2)})" : "";
       final lineNumber = match.group(3);
-      final int limitLength = 999 - (tagName.length) - (className!.length) - (filePath.length) - (lineNumber!.length);
-      String fitMessage = message.length > limitLength ? message.substring(0, limitLength) : message;
+      final int limitLength = 999 -
+          (tagName.length) -
+          (className!.length) -
+          (filePath.length) -
+          (lineNumber!.length);
+      String fitMessage = message.length > limitLength
+          ? message.substring(0, limitLength)
+          : message;
 
       return "${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $fitMessage$_endSequence";
     } else {
