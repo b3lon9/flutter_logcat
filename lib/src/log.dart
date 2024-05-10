@@ -93,7 +93,7 @@ class Log {
   static void _consoleOutput(String log) {
     if (_visible) {
       if (Platform.isAndroid) {
-        debugPrint(log);
+        print(log);
       } else {
         stdout.writeln(log);
       }

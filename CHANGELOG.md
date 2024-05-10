@@ -1,3 +1,6 @@
+## 1.1.7
+* bug fix - limit message length.
+
 ## 1.1.6
 * fix private folder path.
 
