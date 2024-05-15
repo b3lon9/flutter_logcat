@@ -1,3 +1,7 @@
+## 1.1.8
+* add time
+* fix characters range.
+
 ## 1.1.7
 * bug fix - limit message length.
 

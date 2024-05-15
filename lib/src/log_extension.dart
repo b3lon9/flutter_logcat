@@ -39,20 +39,29 @@ extension LogExtension on Log {
 
   /// user message receiver
   /// and converting purpose Logcat implementation.
+  ///
+  /// 2024-05- add limitLength
+  /// because print is not show all about characters
+  /// setting 10 * 1024 bytes.
+  ///
+  /// but I tried this safe range is limit 900 characters
   static String convert(
       {required String tag,
       required String message,
       required LogType logType,
-      required bool path}) {
+      required bool path,
+      required bool time}) {
     RegExp regExp = RegExp(_regExp);
     Match? match = regExp.firstMatch(_getFrame());
 
     if (match != null) {
+      final String dateTime =
+          time ? "${DateTime.now().toIso8601String()}:" : "";
       final tagName = tag.isNotEmpty ? "($tag) " : "";
       final className = match.group(1);
       final filePath = path ? "(${match.group(2)})" : "";
       final lineNumber = match.group(3);
-      final int limitLength = 999 -
+      final int limitLength = 900 -
           (tagName.length) -
           (className!.length) -
           (filePath.length) -
@@ -61,7 +70,7 @@ extension LogExtension on Log {
           ? message.substring(0, limitLength)
           : message;
 
-      return "${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $fitMessage$_endSequence";
+      return "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $fitMessage$_endSequence";
     } else {
       return message;
     }

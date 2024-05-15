@@ -33,13 +33,18 @@ class Log {
   /// [_tag] default tag setting.
   static String _tag = "";
 
+  /// [_time] is console print time visible.
+  static bool _time = false;
+
   /// this function setting external control _visible property.
   /// if you want don't see the console Log.
   /// you can use this function [configure] and [visible] parameter
   /// set kDebugMode or 'false'
-  static void configure({required bool visible, String tag = ""}) {
+  static void configure(
+      {required bool visible, String tag = "", bool time = false}) {
     _visible = visible;
     _tag = tag;
+    _time = time;
   }
 
   /// [v] : verbose
@@ -50,7 +55,8 @@ class Log {
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.verbose,
-          path: path));
+          path: path,
+          time: _time));
 
   /// [i] : information
   /// Informational logs indicating the app's execution state.
@@ -59,7 +65,8 @@ class Log {
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.information,
-          path: path));
+          path: path,
+          time: _time));
 
   /// [d] : debug
   /// Debugging logs helpful during development, omitted from release builds.
@@ -68,7 +75,8 @@ class Log {
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.debug,
-          path: path));
+          path: path,
+          time: _time));
 
   /// [w] : warning
   /// Warning logs signaling potential issues that may not impact the app's execution.
@@ -77,7 +85,8 @@ class Log {
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.warning,
-          path: path));
+          path: path,
+          time: _time));
 
   /// [e] : error
   /// Error logs indicating errors that occurred during execution.
@@ -86,14 +95,17 @@ class Log {
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.error,
-          path: path));
+          path: path,
+          time: _time));
 
-  static void _consoleOutput(String log) {
+  /// Android OS is not showing stdout console.
+  /// so use sdk to print function.
+  static void _consoleOutput(String message) async {
     if (_visible) {
       if (Platform.isAndroid) {
-        print(log);
+        print(message);
       } else {
-        stdout.writeln(log);
+        stdout.writeln(message);
       }
     }
   }

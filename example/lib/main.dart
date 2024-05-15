@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_logcat/flutter_logcat.dart';
 
 void main() {
-  Log.configure(visible: kDebugMode);
+  Log.configure(visible: kDebugMode, time: true);
  // Log.configure(visible: kDebugMode, tag: "donguran");
 
   runApp(const MaterialApp(home: Scaffold(body: ExampleScreen())));
@@ -101,6 +101,18 @@ class _ExampleScreenState extends State<ExampleScreen> {
               Log.e("message", tag: "donguran");
             },
             child: const Text("put 'tag' parameter"),
+          ),
+
+          const Divider(),
+          ElevatedButton(
+            onPressed: () async {
+              StringBuffer messageBuffer = StringBuffer();
+              for (int index=0; index<100; index++) {
+                messageBuffer.write("[message$index] ");
+              }
+              Log.i(messageBuffer.toString());
+            },
+            child: const Text("Long message"),
           )
         ],
       ),
