@@ -39,6 +39,12 @@
 
 ## 🌟 usage
 
+#### Log.configure
+> <h3>parameters</h3>
+> - visible <br/>
+> - tag <br/>
+> - time 
+
 - control visible👀 to Log. <br/>
 **`Log.configure(visible: [Boolean])`**
 ```dart
@@ -56,6 +62,13 @@ Log.i(...);
 ...
 ```
 > ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/db63624a-1cb5-4fa7-b144-73d2fb888c94)
+
+- if you want to see time this <br/>
+**`Log.configure(visible: [Boolean], time: [Boolean])`**
+```dart
+Log.configure(visible: true, time: true);
+```
+> <img width="402" alt="image" src="https://github.com/b3lon9/flutter_logcat/assets/119420119/f4318b22-4d31-489d-908a-c669eb6d6374">
 
 
 <br/>
