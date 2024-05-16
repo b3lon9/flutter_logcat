@@ -98,6 +98,31 @@ class Log {
           path: path,
           time: _time));
 
+  /// [b] : background
+  /// Background logs services.
+  /// if your phone state doze mode,
+  /// use when receive event something.
+  static void b(String message, {String tag = "", bool path = false}) =>
+      _consoleOutput(LogExtension.convert(
+        tag: tag.isEmpty ? _tag: tag,
+        message: message,
+        logType: LogType.background,
+        path: path,
+        time: _time
+      ));
+
+  /// [x] : execute
+  /// Execute logs use a sure method.
+  static void x(String message, {String tag = "", bool path = false}) =>
+      _consoleOutput(LogExtension.convert(
+          tag: tag.isEmpty ? _tag: tag,
+          message: message,
+          logType: LogType.execute,
+          path: path,
+          time: _time
+      ));
+
+
   /// Android OS is not showing stdout console.
   /// so use sdk to print function.
   static void _consoleOutput(String message) async {

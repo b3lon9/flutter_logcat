@@ -96,6 +96,13 @@ extension LogExtension on Log {
       case LogType.error:
         escapeSequence = _errorSequence;
         break;
+
+      case LogType.background:
+        escapeSequence = _backgroundSequence;
+        break;
+      case LogType.execute:
+        escapeSequence = _executeSequence;
+        break;
     }
 
     return escapeSequence;
@@ -113,3 +120,6 @@ const String _informationSequence = "\x1B[92m";
 const String _debugSequence = "\x1B[94m";
 const String _warningSequence = "\x1B[93m";
 const String _errorSequence = "\x1B[91m";
+
+const String _backgroundSequence = "\x1B[96m";
+const String _executeSequence = "\x1B[95m";
