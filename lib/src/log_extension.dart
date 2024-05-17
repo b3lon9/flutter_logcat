@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'log.dart';
 import 'log_type.dart';
 
@@ -23,6 +25,8 @@ import 'log_type.dart';
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 /// SOFTWARE.
 extension LogExtension on Log {
+  static bool _isAndroid = Platform.isAndroid;
+
   /// catch location
   ///
   /// through StackTrace class.
@@ -61,11 +65,14 @@ extension LogExtension on Log {
       final className = match.group(1);
       final filePath = path ? "(${match.group(2)})" : "";
       final lineNumber = match.group(3);
-      final int limitLength = 900 -
-          (tagName.length) -
-          (className!.length) -
-          (filePath.length) -
-          (lineNumber!.length);
+      final int limitLength = _isAndroid
+          ? 960 -
+              (tagName.length) -
+              (className!.length) -
+              (filePath.length) -
+              (lineNumber!.length)
+          : message.length;
+
       String fitMessage = message.length > limitLength
           ? message.substring(0, limitLength)
           : message;
@@ -97,11 +104,11 @@ extension LogExtension on Log {
         escapeSequence = _errorSequence;
         break;
 
+      case LogType.service:
+        escapeSequence = _serviceSequence;
+        break;
       case LogType.background:
         escapeSequence = _backgroundSequence;
-        break;
-      case LogType.execute:
-        escapeSequence = _executeSequence;
         break;
     }
 
@@ -121,5 +128,5 @@ const String _debugSequence = "\x1B[94m";
 const String _warningSequence = "\x1B[93m";
 const String _errorSequence = "\x1B[91m";
 
-const String _backgroundSequence = "\x1B[96m";
-const String _executeSequence = "\x1B[95m";
+const String _serviceSequence = "\x1B[96m";
+const String _backgroundSequence = "\x1B[95m";

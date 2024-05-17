@@ -107,12 +107,25 @@ class _ExampleScreenState extends State<ExampleScreen> {
           ElevatedButton(
             onPressed: () async {
               StringBuffer messageBuffer = StringBuffer();
-              for (int index=0; index<100; index++) {
+              for (int index=0; index<1000; index++) {
                 messageBuffer.write("[message$index] ");
               }
               Log.i(messageBuffer.toString());
             },
             child: const Text("Long message"),
+          ),
+          const Divider(),
+          ElevatedButton(
+            onPressed: () {
+              Log.s("message from service");
+            },
+            child: const Text("service"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Log.x("message from background");
+            },
+            child: const Text("background"),
           )
         ],
       ),
