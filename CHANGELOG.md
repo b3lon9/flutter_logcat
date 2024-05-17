@@ -1,3 +1,6 @@
+## 1.2.0
+* change logo
+
 ## 1.1.9
 * add service, bacgkround log functions.
 * add logo icon.

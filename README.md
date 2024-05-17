@@ -53,7 +53,7 @@ Log.e("message");
 
 <br/>
 
-- ### show 'message' & 'path' <br/>
+- ### show 'message' & 'path'
 **`Log.v([String], path: [Boolean])`**
 ```dart
 Log.v("message", path: true);
@@ -67,7 +67,7 @@ Log.e("message", path: true);
 
 <br/>
 
-- ### show 'message' & 'tag' <br/>
+- ### show 'message' & 'tag'
 **`Log.v([String], tag: [String])`**
 ```dart
 Log.v("message", tag: "donguran");
@@ -82,19 +82,19 @@ Log.e("message", tag: "donguran");
 <br/>
 
 
-- ### setting Log's Configure
+## setting Log's Configure
 > - visible <br/>
 > - tag <br/>
 > - time 
 
-- #### control visible👀 to Log. <br/>
+- #### control visible👀 to Log.
 **`Log.configure(visible: [Boolean])`**
 ```dart
 import 'package:flutter/foundation.dart';
 
 Log.configure(visible: kDebugMode);
 ```
-- #### if you want setting default `tag` <br/>
+- #### if you want setting default `tag` 
 **`Log.configure(visible: [Boolean], tag: [String])`**
 ```dart
 Log.configure(visible: kDebugMode, tag: "donguran");
@@ -105,7 +105,7 @@ Log.i(...);
 ```
 > ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/db63624a-1cb5-4fa7-b144-73d2fb888c94)
 
-- #### if you want to see time this <br/>
+- #### if you want to see time this
 **`Log.configure(visible: [Boolean], time: [Boolean])`**
 ```dart
 Log.configure(visible: true, time: true);
@@ -114,10 +114,3 @@ Log.configure(visible: true, time: true);
 
 
 <br/>
-
-
-
-
-
-<br/>
-

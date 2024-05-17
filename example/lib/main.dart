@@ -126,7 +126,7 @@ class _ExampleScreenState extends State<ExampleScreen> {
               Log.x("message from background");
             },
             child: const Text("background"),
-          )
+          ),
         ],
       ),
     );
