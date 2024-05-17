@@ -1,3 +1,7 @@
+## 1.1.9
+* add service, bacgkround log functions.
+* add logo icon.
+
 ## 1.1.8
 * add time
 * fix characters range.
