@@ -39,41 +39,7 @@
 
 ## 🌟 usage
 
-#### Log.configure
-> <h3>parameters</h3>
-> - visible <br/>
-> - tag <br/>
-> - time 
-
-- control visible👀 to Log. <br/>
-**`Log.configure(visible: [Boolean])`**
-```dart
-import 'package:flutter/foundation.dart';
-
-Log.configure(visible: kDebugMode);
-```
-- if you want setting default `tag` <br/>
-**`Log.configure(visible: [Boolean], tag: [String])`**
-```dart
-Log.configure(visible: kDebugMode, tag: "donguran");
-
-Log.v(...);
-Log.i(...);
-...
-```
-> ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/db63624a-1cb5-4fa7-b144-73d2fb888c94)
-
-- if you want to see time this <br/>
-**`Log.configure(visible: [Boolean], time: [Boolean])`**
-```dart
-Log.configure(visible: true, time: true);
-```
-> <img width="402" alt="image" src="https://github.com/b3lon9/flutter_logcat/assets/119420119/f4318b22-4d31-489d-908a-c669eb6d6374">
-
-
-<br/>
-
-- only message <br/>
+- ### show only 'message' <br/>
 **`Log.v([String]);`**
 ```dart
 Log.v("message");
@@ -85,10 +51,9 @@ Log.e("message");
 > [_ExampleScreenState:30] message <br/>
 > ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/e2900c8a-c947-4d59-a575-631d5a387565)
 
-
 <br/>
 
-- 'path' parameter put true <br/>
+- ### show 'message' & 'path' <br/>
 **`Log.v([String], path: [Boolean])`**
 ```dart
 Log.v("message", path: true);
@@ -100,11 +65,9 @@ Log.e("message", path: true);
 > [_ExampleScreenState(example/main.dart):35] message <br/>
 > ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/a90df6ba-bb6a-45da-bc62-c351ea45f1e3)
 
-
-
 <br/>
 
-- 'tag' parameter <br/>
+- ### show 'message' & 'tag' <br/>
 **`Log.v([String], tag: [String])`**
 ```dart
 Log.v("message", tag: "donguran");
@@ -116,8 +79,45 @@ Log.e("message", tag: "donguran");
 > (donguran) [_ExampleScreenState(example/main.dart):48] message <br/>
 > ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/691effe8-f208-4d49-a500-80e8e8d206b5)
 
+<br/>
+
+
+- ### setting Log's Configure
+> - visible <br/>
+> - tag <br/>
+> - time 
+
+- #### control visible👀 to Log. <br/>
+**`Log.configure(visible: [Boolean])`**
+```dart
+import 'package:flutter/foundation.dart';
+
+Log.configure(visible: kDebugMode);
+```
+- #### if you want setting default `tag` <br/>
+**`Log.configure(visible: [Boolean], tag: [String])`**
+```dart
+Log.configure(visible: kDebugMode, tag: "donguran");
+
+Log.v(...);
+Log.i(...);
+...
+```
+> ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/db63624a-1cb5-4fa7-b144-73d2fb888c94)
+
+- #### if you want to see time this <br/>
+**`Log.configure(visible: [Boolean], time: [Boolean])`**
+```dart
+Log.configure(visible: true, time: true);
+```
+> <img width="402" alt="image" src="https://github.com/b3lon9/flutter_logcat/assets/119420119/f4318b22-4d31-489d-908a-c669eb6d6374">
 
 
 <br/>
+
+
+
+
+
 <br/>
 
