@@ -122,12 +122,14 @@ class Log {
 
   /// Android OS is not showing stdout console.
   /// so use sdk to print function.
-  static void _consoleOutput(String message) async {
+  static void _consoleOutput(List<String> messages) async {
     if (_visible) {
       if (Platform.isAndroid) {
-        print(message);
+        for (String message in messages) {
+          print(message);
+        }
       } else {
-        stdout.writeln(message);
+        stdout.writeln(messages.first);
       }
     }
   }

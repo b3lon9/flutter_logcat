@@ -127,6 +127,19 @@ class _ExampleScreenState extends State<ExampleScreen> {
             },
             child: const Text("background"),
           ),
+          const Divider(),
+          ElevatedButton(
+            onPressed: () async {
+              StringBuffer buffer = StringBuffer();
+              for (int i=0; i<500; i++) {
+                buffer.write("message($i)");
+              }
+              debugPrint("${buffer.toString()}");
+
+              Log.w(buffer.toString());
+            },
+            child: const Text("longterm messages"),
+          )
         ],
       ),
     );

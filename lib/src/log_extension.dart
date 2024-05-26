@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
+
 import 'log.dart';
 import 'log_type.dart';
 
@@ -49,7 +51,7 @@ extension LogExtension on Log {
   /// setting 10 * 1024 bytes.
   ///
   /// but I tried this safe range is limit 900 characters
-  static String convert(
+  static List<String> convert(
       {required String tag,
       required String message,
       required LogType logType,
@@ -59,27 +61,34 @@ extension LogExtension on Log {
     Match? match = regExp.firstMatch(_getFrame());
 
     if (match != null) {
+      List<String> messages = [];
       final String dateTime =
           time ? "${DateTime.now().toIso8601String()}:" : "";
       final tagName = tag.isNotEmpty ? "($tag) " : "";
       final className = match.group(1);
       final filePath = path ? "(${match.group(2)})" : "";
       final lineNumber = match.group(3);
-      final int limitLength = _isAndroid
-          ? 960 -
-              (tagName.length) -
-              (className!.length) -
-              (filePath.length) -
-              (lineNumber!.length)
-          : message.length;
 
-      String fitMessage = message.length > limitLength
-          ? message.substring(0, limitLength)
-          : message;
+      if (_isAndroid) {
+        int limitIndex = 900;
+        for (int i = 0; i < message.length; i += limitIndex) {
+          int end = (i + limitIndex < message.length)
+              ? i + limitIndex
+              : message.length;
+          messages.add(message.substring(i, end));
+        }
+      } else {
+        messages.add(message);
+      }
 
-      return "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $fitMessage$_endSequence";
+      return messages
+          .map(
+            (element) =>
+                "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $element$_endSequence",
+          )
+          .toList();
     } else {
-      return message;
+      return [message];
     }
   }
 

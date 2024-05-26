@@ -1,3 +1,6 @@
+## 1.2.1
+* fix aos long sentence not showing bug.
+
 ## 1.2.0
 * change logo
 
