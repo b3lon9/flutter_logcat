@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-
 import 'log.dart';
 import 'log_type.dart';
 

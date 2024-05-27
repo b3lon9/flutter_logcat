@@ -1,3 +1,6 @@
+## 1.2.2
+* remove cupertino library.
+
 ## 1.2.1
 * fix aos long sentence not showing bug.
 
