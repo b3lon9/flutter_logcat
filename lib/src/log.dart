@@ -50,87 +50,106 @@ class Log {
   /// [v] : verbose
   /// V (Verbose): Lowest priority level used for debugging purposes,
   /// providing the most extensive amount of logs.
-  static void v(String message, {String tag = "", bool path = false}) =>
+  static void v(String message, {String tag = "", bool path = false}) {
+    if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.verbose,
           path: path,
           time: _time));
+    }
+  }
 
   /// [i] : information
   /// Informational logs indicating the app's execution state.
-  static void i(String message, {String tag = "", bool path = false}) =>
+  static void i(String message, {String tag = "", bool path = false}) {
+    if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.information,
           path: path,
           time: _time));
+    }
+  }
 
   /// [d] : debug
   /// Debugging logs helpful during development, omitted from release builds.
-  static void d(String message, {String tag = "", bool path = false}) =>
+  static void d(String message, {String tag = "", bool path = false}) {
+    if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.debug,
           path: path,
           time: _time));
+    }
+  }
 
   /// [w] : warning
   /// Warning logs signaling potential issues that may not impact the app's execution.
-  static void w(String message, {String tag = "", bool path = false}) =>
+  static void w(String message, {String tag = "", bool path = false}) {
+    if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.warning,
           path: path,
           time: _time));
+    }
+  }
 
   /// [e] : error
   /// Error logs indicating errors that occurred during execution.
-  static void e(String message, {String tag = "", bool path = false}) =>
+  static void e(String message, {String tag = "", bool path = false}) {
+    if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.error,
           path: path,
           time: _time));
+    }
+  }
 
   /// [s] : service
   /// services log.
   /// if your phone state doze mode,
   /// use when receive event something.
-  static void s(String message, {String tag = "", bool path = false}) =>
+  static void s(String message, {String tag = "", bool path = false}) {
+    if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.service,
           path: path,
           time: _time));
+    }
+  }
 
   /// [x] : background
   /// background logs use a sure method.
-  static void x(String message, {String tag = "", bool path = false}) =>
+  static void x(String message, {String tag = "", bool path = false}) {
+    if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.background,
           path: path,
           time: _time));
+    }
+  }
 
   /// Android OS is not showing stdout console.
   /// so use sdk to print function.
   static void _consoleOutput(List<String> messages) async {
-    if (_visible) {
-      if (Platform.isAndroid) {
-        for (String message in messages) {
-          print(message);
-        }
-      } else {
-        stdout.writeln(messages.first);
+    if (Platform.isAndroid) {
+      for (String message in messages) {
+        print(message);
       }
+    } else {
+      stdout.writeln(messages.first);
     }
   }
 }

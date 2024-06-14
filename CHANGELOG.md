@@ -1,3 +1,7 @@
+## 1.2.3
+* rebase visible properties before console output function
+* because if message has not contents, occur error.
+
 ## 1.2.2
 * remove cupertino library.
 
