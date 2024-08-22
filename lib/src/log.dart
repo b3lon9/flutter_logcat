@@ -3,27 +3,23 @@ import 'dart:io';
 import 'log_extension.dart';
 import 'log_type.dart';
 
-/// MIT License
+/// The [Log] Class will give you a great experience.
+/// The way to use the Log Class is very simple.
 ///
-/// Copyright (c) 2024 neander of donguran
+/// please let me know the exact location of the result you want to check.
+/// It is good to debug daily, but sometimes you need to know data information simply, right?
 ///
-/// Permission is hereby granted, free of charge, to any person obtaining a copy
-/// of this software and associated documentation files (the "Software"), to deal
-/// in the Software without restriction, including without limitation the rights
-/// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-/// copies of the Software, and to permit persons to whom the Software is
-/// furnished to do so, subject to the following conditions:
+/// If you use [Log] Class, your development speed will be easier!
 ///
-/// The above copyright notice and this permission notice shall be included in all
-/// copies or substantial portions of the Software.
+/// call it everywhere!
 ///
-/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-/// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-/// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-/// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-/// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-/// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-/// SOFTWARE.
+/// -
+///
+/// One thing to be aware of is that you should use it after [runApp] function.
+/// Then, have a good time :)
+///
+/// - Log.configure(...)
+/// - Log.v(...);
 class Log {
   Log._();
 
@@ -40,6 +36,11 @@ class Log {
   /// if you want don't see the console Log.
   /// you can use this function [configure] and [visible] parameter
   /// set kDebugMode or 'false'
+  ///
+  /// -
+  ///
+  /// you don't have to use the [configure] function.
+  /// It is a function made solely for convenience.
   static void configure(
       {required bool visible, String tag = "", bool time = false}) {
     _visible = visible;
