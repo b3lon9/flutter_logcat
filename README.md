@@ -8,25 +8,22 @@
 <br/>
 
 
+<h2>It will make debugging much more convenient</h2>
 
-**when you click like💗 this, I will be very very happy:) <br/>
-
----
-
-💘 <b>tool</b>🤍 <b>useful</b>💚 <b>simple</b>💙 <b>easy</b>💛 <b>like</b>💖
 
 <br/>
 
 <img src="https://github.com/b3lon9/flutter_logcat/assets/119420119/d5310fff-c4f2-4d9f-b37a-fcb283b814aa" alt="image" width="50%" height="50%">
 
-## 🚀 struct
+## 🚀 Struct
 `flutter_logcat` need only three parameters there are `message`, `tag`, `path`  <br/><br/>
 - `message` : if yon want input message to watch on console.  <br/>
 - `tag`: this is when you define something tag name.  <br/>
 - `path`: if you define true, you can watch file preference path. (default: false) <br/><br/>
 
 
-## 💌 console print 
+## 💌 Console Print 
+<h3>Parameters</h3>
 
 | message            | tag                | path               | output              |
 | ------------------ | ------------------ | ------------------ | ------------------ |
@@ -37,9 +34,9 @@
 
 <br/>
 
-## 🌟 usage
+## 🌟 Usage
 
-- ### show only 'message' <br/>
+- ### Show only 'message' <br/>
 **`Log.v([String]);`**
 ```dart
 Log.v("message");
@@ -53,7 +50,7 @@ Log.e("message");
 
 <br/>
 
-- ### show 'message' & 'path'
+- ### Show 'message' & 'path'
 **`Log.v([String], path: [Boolean])`**
 ```dart
 Log.v("message", path: true);
@@ -67,7 +64,7 @@ Log.e("message", path: true);
 
 <br/>
 
-- ### show 'message' & 'tag'
+- ### Show 'message' & 'tag'
 **`Log.v([String], tag: [String])`**
 ```dart
 Log.v("message", tag: "donguran");
@@ -82,19 +79,19 @@ Log.e("message", tag: "donguran");
 <br/>
 
 
-## setting Log's Configure
+## Setting Log's Configure
 > - visible <br/>
 > - tag <br/>
 > - time 
 
-- #### control visible👀 to Log.
+- #### Control Visible👀 to Log.
 **`Log.configure(visible: [Boolean])`**
 ```dart
 import 'package:flutter/foundation.dart';
 
 Log.configure(visible: kDebugMode);
 ```
-- #### if you want setting default `tag` 
+- #### If you want setting default `tag` 
 **`Log.configure(visible: [Boolean], tag: [String])`**
 ```dart
 Log.configure(visible: kDebugMode, tag: "donguran");
@@ -105,7 +102,7 @@ Log.i(...);
 ```
 > ![image](https://github.com/b3lon9/flutter_logcat/assets/119420119/db63624a-1cb5-4fa7-b144-73d2fb888c94)
 
-- #### if you want to see time this
+- #### If you want to see time this
 **`Log.configure(visible: [Boolean], time: [Boolean])`**
 ```dart
 Log.configure(visible: true, time: true);
