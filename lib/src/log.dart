@@ -51,66 +51,86 @@ class Log {
   /// [v] : verbose
   /// V (Verbose): Lowest priority level used for debugging purposes,
   /// providing the most extensive amount of logs.
-  static void v(String message, {String tag = "", bool path = false}) {
+  ///
+  /// [tag] Define you want tag-name.
+  /// [path] Where his log implemented.
+  /// [time] Visible Current DateTime
+  static void v(String message, {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.verbose,
           path: path,
-          time: _time));
+          time:  _time ? time : time || _time));
     }
   }
 
   /// [i] : information
   /// Informational logs indicating the app's execution state.
-  static void i(String message, {String tag = "", bool path = false}) {
+  ///
+  /// [tag] Define you want tag-name.
+  /// [path] Where his log implemented.
+  /// [time] Visible Current DateTime
+  static void i(String message, {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.information,
           path: path,
-          time: _time));
+          time: _time ? time : time || _time));
     }
   }
 
   /// [d] : debug
   /// Debugging logs helpful during development, omitted from release builds.
-  static void d(String message, {String tag = "", bool path = false}) {
+  ///
+  /// [tag] Define you want tag-name.
+  /// [path] Where his log implemented.
+  /// [time] Visible Current DateTime
+  static void d(String message, {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.debug,
           path: path,
-          time: _time));
+          time: _time ? time : time || _time));
     }
   }
 
   /// [w] : warning
   /// Warning logs signaling potential issues that may not impact the app's execution.
-  static void w(String message, {String tag = "", bool path = false}) {
+  ///
+  /// [tag] Define you want tag-name.
+  /// [path] Where his log implemented.
+  /// [time] Visible Current DateTime
+  static void w(String message, {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.warning,
           path: path,
-          time: _time));
+          time: _time ? time : time || _time));
     }
   }
 
   /// [e] : error
   /// Error logs indicating errors that occurred during execution.
-  static void e(String message, {String tag = "", bool path = false}) {
+  ///
+  /// [tag] Define you want tag-name.
+  /// [path] Where his log implemented.
+  /// [time] Visible Current DateTime
+  static void e(String message, {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.error,
           path: path,
-          time: _time));
+          time: _time ? time : time || _time));
     }
   }
 
@@ -118,27 +138,35 @@ class Log {
   /// services log.
   /// if your phone state doze mode,
   /// use when receive event something.
-  static void s(String message, {String tag = "", bool path = false}) {
+  ///
+  /// [tag] Define you want tag-name.
+  /// [path] Where his log implemented.
+  /// [time] Visible Current DateTime
+  static void s(String message, {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.service,
           path: path,
-          time: _time));
+          time: _time ? time : time || _time));
     }
   }
 
   /// [x] : background
   /// background logs use a sure method.
-  static void x(String message, {String tag = "", bool path = false}) {
+  ///
+  /// [tag] Define you want tag-name.
+  /// [path] Where his log implemented.
+  /// [time] Visible Current DateTime
+  static void x(String message, {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
           tag: tag.isEmpty ? _tag : tag,
           message: message,
           logType: LogType.background,
           path: path,
-          time: _time));
+          time: _time ? time : time || _time));
     }
   }
 
