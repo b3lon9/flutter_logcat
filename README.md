@@ -1,36 +1,45 @@
 ![flutter_logcat_transparent](https://github.com/b3lon9/flutter_logcat/assets/119420119/0493edfd-c9e2-4bb3-b7fd-706d7ecd4977)
 
-
-## 
+<hr/>
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_logcat?color=blue)](https://pub.dev/packages/flutter_logcat)
 
+<h3>In Flutter, logs are displayed in the console without any distinguishing colors. <br/>
+However, by using this package, you can view messages in the console with colors that you define. <br/>
+Additionally, you can configure it so that logs are hidden in debug mode, and you can also set it to display tags, file paths, and timestamps.</h3>
+
+
 <br/>
 
+## 📸 Demo
 
-<h2>It will make debugging much more convenient</h2>
-
-
-<br/>
+In Console
 
 <img src="https://github.com/b3lon9/flutter_logcat/assets/119420119/d5310fff-c4f2-4d9f-b37a-fcb283b814aa" alt="image" width="50%" height="50%">
 
-## 🚀 Struct
-`flutter_logcat` need only three parameters there are `message`, `tag`, `path`  <br/><br/>
-- `message` : if yon want input message to watch on console.  <br/>
-- `tag`: this is when you define something tag name.  <br/>
-- `path`: if you define true, you can watch file preference path. (default: false) <br/><br/>
+<br/>
 
+## 🌱 Getting Started
+
+[Install Package](https://pub.dev/packages/flutter_logcat/install/)
+
+`flutter_logcat` need only three parameters there are `message`, `tag`, `path`, `time`  <br/>
+- `message` : If yon want input message to watch on console.  <br/>
+- `tag`: Custom own your's tag name.  <br/>
+- `path`: You can watch file preference path. (default: false) <br/>
+- `time`: You can watch current time. (default: false) <br/>
+
+<br/>
 
 ## 💌 Console Print 
 <h3>Parameters</h3>
 
-| message            | tag                | path               | output              |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| :heavy_check_mark: | :x:                | :x:                | `[className:lineNumber] message` |
-| :heavy_check_mark: | :heavy_check_mark: | :x:                | `(tag) [className:lineNumber] message` |
-| :heavy_check_mark: | :x:                | :heavy_check_mark: | `[className(packageName/className.dart):lineNumber] message` |
-| :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | `(tag) [className(packageName/className.dart):lineNumber] message` |
+| parameter            | required                | type               |  default    | output                                                        |
+| ---------------------| ------------------------|--------------------|-------------|---------------------------------------------------------------|
+| message              | :heavy_check_mark:      | String             |             |  `[className:lineNumber] message`                             |
+| tag                  | :x:                     | String             |             |  `(tag) [className:lineNumber] message`                       |
+| path                 | :x:                     | bool               |  false      |  `[className(packageName/className.dart):lineNumber] message` |
+| time                 | :x:                     | bool               |  false      |  `2024-09-25T00:00:000.000000:[className:linenumber] message` |
 
 <br/>
 
@@ -78,6 +87,22 @@ Log.e("message", tag: "donguran");
 
 <br/>
 
+
+- ### Show 'message' & 'tag'
+**`Log.v([String], tag: [String])`**
+```dart
+Log.v("message", time: true);
+Log.i("message", time: true);
+Log.d("message", time: true);
+Log.w("message", time: true);
+Log.e("message", time: true);
+```
+> 2024-09-25T00:00:000.000000:[className:linenumber] message <br/>
+> ![image](https://github.com/user-attachments/assets/03a06561-3c20-467d-98fc-139f2b850e5f)
+
+
+
+<br/>
 
 ## Setting Log's Configure
 > - visible <br/>
