@@ -1,80 +1,83 @@
+## 1.2.5
+* Added put time parameter into functions.
+
 ## 1.2.4
-* remove LICENSE on code.
-* add descriptions.
+* Remove LICENSE on code.
+* Add descriptions.
 
 ## 1.2.3
-* rebase visible properties before console output function
-* because if message has not contents, occur error.
+* Rebase visible properties before console output function
+* Because if message has not contents, occur error.
 
 ## 1.2.2
-* remove cupertino library.
+* Remove cupertino library.
 
 ## 1.2.1
-* fix aos long sentence not showing bug.
+* Fix aos long sentence not showing bug.
 
 ## 1.2.0
-* change logo
+* Change logo
 
 ## 1.1.9
-* add service, bacgkround log functions.
-* add logo icon.
+* Add service, bacgkround log functions.
+* Add logo icon.
 
 ## 1.1.8
-* add time
-* fix characters range.
+* Add time
+* Fix characters range.
 
 ## 1.1.7
-* bug fix - limit message length.
+* Fixed bug - limit message length.
 
 ## 1.1.6
-* fix private folder path.
+* Fix private folder path.
 
 ## 1.1.5
-* fix description example source.
+* Fix description example source.
 
 ## 1.1.4
-* add `tag` parameter into 'configure' function.
+* Add `tag` parameter into 'configure' function.
 
 ## 1.1.3
-* dart format to perfect score.
+* Dart format to perfect score.
 
 ## 1.1.2
-* add 'configure' function.
+* Add 'configure' function.
 
 ## 1.1.1
-* change path
+* Change path
 
 ## 1.1.0
-* block Log class can not create constructor.
+* Block Log class can not create constructor.
 
 ## 1.0.9
-* remove license content of description.
+* Remove license content of description.
 
 ## 1.0.8
-* fix available on iOS
+* Fix available on iOS
 
 ## 1.0.7
-* hope this commit is last :).
-* add kind description.
+* Hope this commit is last :).
+* Add kind description.
 
 ## 1.0.6
-* add description README.
-* specify LICENSE into classes.
+* Add description README.
+* Specify LICENSE into classes.
 
 ## 1.0.5
-* do cmd dart format ./log_type.dart 1 issues to score.
+* Do cmd dart format ./log_type.dart 1 issues to score.
 
 ## 1.0.4
-* re-fix dart format 2 issues.
+* Re-fix dart format 2 issues.
 
 ## 1.0.3
-* fix dart score 2 issues.
+* Fix dart score 2 issues.
 
 ## 1.0.2
-* fix remove gap tag and className.
+* Fix remove gap tag and className.
 
 ## 1.0.1
-* release mode.
+* Release mode.
 
 ## 0.0.1
 

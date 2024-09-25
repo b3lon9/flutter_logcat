@@ -71,6 +71,18 @@ class _ExampleScreenState extends State<ExampleScreen> {
             },
             child: const Text("error"),
           ),
+          ElevatedButton(
+            onPressed: () {
+              Log.s("message from service");
+            },
+            child: const Text("service"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Log.x("message from background");
+            },
+            child: const Text("background"),
+          ),
           const Divider(),
           ElevatedButton(
             onPressed: () {
@@ -102,7 +114,16 @@ class _ExampleScreenState extends State<ExampleScreen> {
             },
             child: const Text("put 'tag' parameter"),
           ),
-
+          ElevatedButton(
+            onPressed: () {
+              Log.v("message", time: true);
+              Log.i("message", time: true);
+              Log.d("message", time: true);
+              Log.w("message", time: true);
+              Log.e("message", time: true);
+            },
+            child: const Text("put 'time' parameter"),
+          ),
           const Divider(),
           ElevatedButton(
             onPressed: () async {
@@ -115,19 +136,7 @@ class _ExampleScreenState extends State<ExampleScreen> {
             child: const Text("Long message"),
           ),
           const Divider(),
-          ElevatedButton(
-            onPressed: () {
-              Log.s("message from service");
-            },
-            child: const Text("service"),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Log.x("message from background");
-            },
-            child: const Text("background"),
-          ),
-          const Divider(),
+
           ElevatedButton(
             onPressed: () async {
               StringBuffer buffer = StringBuffer();
