@@ -1,7 +1,7 @@
 name: flutter_logcat
-description: "you can distribute check Log on Flutter's console. very simple usage!"
+description: "You can view messages in the console with colors that you define. Also set it to display tags, file paths, and timestamps"
 version: 1.2.5
-homepage: https://donguran.com/pages/flutterlogcat
+# homepage: https://donguran.com/pages/flutterlogcat
 repository: https://github.com/b3lon9/flutter_logcat
 
 environment:

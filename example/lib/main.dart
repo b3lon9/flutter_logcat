@@ -4,7 +4,7 @@ import 'package:flutter_logcat/flutter_logcat.dart';
 
 void main() {
   Log.configure(visible: kDebugMode, time: true);
- // Log.configure(visible: kDebugMode, tag: "donguran");
+  // Log.configure(visible: kDebugMode, tag: "donguran");
 
   runApp(const MaterialApp(home: Scaffold(body: ExampleScreen())));
 }
@@ -128,7 +128,7 @@ class _ExampleScreenState extends State<ExampleScreen> {
           ElevatedButton(
             onPressed: () async {
               StringBuffer messageBuffer = StringBuffer();
-              for (int index=0; index<1000; index++) {
+              for (int index = 0; index < 1000; index++) {
                 messageBuffer.write("[message$index] ");
               }
               Log.i(messageBuffer.toString());
@@ -136,11 +136,10 @@ class _ExampleScreenState extends State<ExampleScreen> {
             child: const Text("Long message"),
           ),
           const Divider(),
-
           ElevatedButton(
             onPressed: () async {
               StringBuffer buffer = StringBuffer();
-              for (int i=0; i<500; i++) {
+              for (int i = 0; i < 500; i++) {
                 buffer.write("message($i)");
               }
               debugPrint("${buffer.toString()}");
