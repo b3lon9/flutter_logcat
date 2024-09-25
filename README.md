@@ -43,7 +43,7 @@ In Console
 
 <br/>
 
-## 🌟 Usage
+## 🚀 Usage
 
 - ### Show only 'message' <br/>
 **`Log.v([String]);`**
@@ -104,7 +104,11 @@ Log.e("message", time: true);
 
 <br/>
 
-## Setting Log's Configure
+## 🧭 Set Log Configure
+
+<h4>It's okay if you don't declare this function. <br/>
+You only need to use it when an overall setup is required.</h4>
+
 > - visible <br/>
 > - tag <br/>
 > - time 
