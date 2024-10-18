@@ -106,8 +106,8 @@ Log.e("message", tag: "donguran");
 <br/>
 
 
-- ### Show 'message' & 'tag'
-**`Log.v([String], tag: [String])`**
+- ### Show 'message' & 'time'
+**`Log.v([String], time: [String])`**
 ```dart
 Log.v("message", time: true);
 Log.i("message", time: true);
