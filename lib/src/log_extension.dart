@@ -123,6 +123,7 @@ extension LogExtension on Log {
           escapeSequence = _errorSignal;
           break;
 
+        // orange
         case LogType.service:
           escapeSequence = _serviceSignal;
           break;
@@ -148,10 +149,10 @@ const String _debugSequence = "\x1B[94m";
 const String _warningSequence = "\x1B[93m";
 const String _errorSequence = "\x1B[91m";
 
-/// Color:
+/// Color: Cyan(sky)
 const String _serviceSequence = "\x1B[96m";
 
-/// Color:
+/// Color: Magenta(purple)
 const String _backgroundSequence = "\x1B[95m";
 
 /// 2024-10-18
@@ -164,5 +165,5 @@ const String _debugSignal = "🔵 ";
 const String _warningSignal = "🟡 ";
 const String _errorSignal = "🔴 ";
 
-const String _serviceSignal = "🟣 ";
-const String _backgroundSignal = "🟤 ";
+const String _serviceSignal = "🟠 ";
+const String _backgroundSignal = "🟣 ";
