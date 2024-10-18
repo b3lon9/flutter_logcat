@@ -1,3 +1,7 @@
+## 1.2.6
+* Fix possible print for iOS & Others platforms.
+* Added iOS&Others description images.
+
 ## 1.2.5
 * Added put time parameter into functions.
 
