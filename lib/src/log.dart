@@ -16,6 +16,7 @@ class Log {
   ///
   /// Additionally, you can configure it so that logs are hidden in debug mode(kDebugMode), and you can also set it to display [tag], [file] paths, and [time]stamps.
   Log._();
+  static bool _isAndroid = Platform.isAndroid;
 
   /// [_visible] is console print Log visible.
   static bool _visible = true;
@@ -175,12 +176,14 @@ class Log {
   /// Android OS is not showing stdout console.
   /// so use sdk to print function.
   static void _consoleOutput(List<String> messages) async {
-    if (Platform.isAndroid) {
+    if (_isAndroid) {
       for (String message in messages) {
         print(message);
       }
     } else {
-      stdout.writeln(messages.first);
+      // @deprecated("iOS block console issue")
+      // stdout.writeln(messages.first);
+      print(messages.first);
     }
   }
 }

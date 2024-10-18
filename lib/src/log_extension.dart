@@ -47,6 +47,7 @@ extension LogExtension on Log {
       final filePath = path ? "(${match.group(2)})" : "";
       final lineNumber = match.group(3);
 
+      // Android console sentence length 1024 issue
       if (_isAndroid) {
         int limitIndex = 900;
         for (int i = 0; i < message.length; i += limitIndex) {
@@ -62,7 +63,7 @@ extension LogExtension on Log {
       return messages
           .map(
             (element) =>
-                "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $element$_endSequence",
+                "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $element${_isAndroid ? _endSequence : ""}",
           )
           .toList();
     } else {
@@ -73,33 +74,65 @@ extension LogExtension on Log {
   /// ANSI ESCAPE SEQUENCE COLOR
   ///
   static String _ansiEscape(LogType logType) {
-    String escapeSequence = _endSequence;
-    switch (logType) {
-      case LogType.verbose:
-        escapeSequence = _verboseSequence;
-        break;
-      case LogType.information:
-        escapeSequence = _informationSequence;
-        break;
-      case LogType.debug:
-        escapeSequence = _debugSequence;
-        break;
-      case LogType.warning:
-        escapeSequence = _warningSequence;
-        break;
-      case LogType.error:
-        escapeSequence = _errorSequence;
-        break;
+    if (_isAndroid) {
+      String escapeSequence = _endSequence;
+      switch (logType) {
+        case LogType.verbose:
+          escapeSequence = _verboseSequence;
+          break;
+        case LogType.information:
+          escapeSequence = _informationSequence;
+          break;
+        case LogType.debug:
+          escapeSequence = _debugSequence;
+          break;
+        case LogType.warning:
+          escapeSequence = _warningSequence;
+          break;
+        case LogType.error:
+          escapeSequence = _errorSequence;
+          break;
 
-      case LogType.service:
-        escapeSequence = _serviceSequence;
-        break;
-      case LogType.background:
-        escapeSequence = _backgroundSequence;
-        break;
+        case LogType.service:
+          escapeSequence = _serviceSequence;
+          break;
+        case LogType.background:
+          escapeSequence = _backgroundSequence;
+          break;
+      }
+
+      return escapeSequence;
+    } else {
+      // Not Android
+      String escapeSequence = _verboseSignal;
+
+      switch (logType) {
+        case LogType.verbose:
+          escapeSequence = _verboseSignal;
+          break;
+        case LogType.information:
+          escapeSequence = _informationSignal;
+          break;
+        case LogType.debug:
+          escapeSequence = _debugSignal;
+          break;
+        case LogType.warning:
+          escapeSequence = _warningSignal;
+          break;
+        case LogType.error:
+          escapeSequence = _errorSignal;
+          break;
+
+        case LogType.service:
+          escapeSequence = _serviceSignal;
+          break;
+        case LogType.background:
+          escapeSequence = _backgroundSignal;
+          break;
+      }
+
+      return escapeSequence;
     }
-
-    return escapeSequence;
   }
 }
 
@@ -115,5 +148,21 @@ const String _debugSequence = "\x1B[94m";
 const String _warningSequence = "\x1B[93m";
 const String _errorSequence = "\x1B[91m";
 
+/// Color:
 const String _serviceSequence = "\x1B[96m";
+
+/// Color:
 const String _backgroundSequence = "\x1B[95m";
+
+/// 2024-10-18
+///
+/// iOS issue block stdout
+/// Signal Icon gap one space.
+const String _verboseSignal = "⚪️ ";
+const String _informationSignal = "🟢 ";
+const String _debugSignal = "🔵 ";
+const String _warningSignal = "🟡 ";
+const String _errorSignal = "🔴 ";
+
+const String _serviceSignal = "🟣 ";
+const String _backgroundSignal = "🟤 ";
