@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import '/src/log_const.dart';
+
 import 'log_extension.dart';
 import 'log_type.dart';
 
@@ -27,6 +29,38 @@ class Log {
   /// [_time] is console print time visible.
   static bool _time = false;
 
+  /// [_history] has print String messages.
+  static bool _history = false;
+
+  /// Stacked your [Log] values.
+  ///
+  /// If you want clear this, You can use [clearHistory] function.
+  ///
+  /// -
+  ///
+  /// At First, like this. [history] parameter to set 'true'.
+  ///
+  /// ```dart
+  /// Log.configure(visible: kDebugMode, history: true);
+  /// ```
+  static String get history {
+    assert(
+        _history,
+        'Please define Log.configure function\'s history to set \'true\'.\n'
+        '`Log.configure(visible: kDebugMode, history: true);`');
+    return _historyBuffer.toString();
+  }
+
+  /// [stream] function parameter.
+  ///
+  /// Deliver message into [stream] argument.
+  ///
+  /// Maybe you want remove this, You can use [removeStream] function.
+  static Function(String message)? _streamListener;
+
+  /// [history] stack
+  static StringBuffer _historyBuffer = StringBuffer();
+
   /// It's okay if you don't declare this function.
   /// You only need to use it when an overall setup is required.
   ///
@@ -37,11 +71,17 @@ class Log {
   /// [tag] : Custom Tag into log messages.
   ///
   /// [time] : Show current Time [DateTime.now()] into log messages.
+  ///
+  /// [history] :
   static void configure(
-      {required bool visible, String tag = "", bool time = false}) {
+      {required bool visible,
+      String tag = "",
+      bool time = false,
+      bool history = false}) {
     _visible = visible;
     _tag = tag;
     _time = time;
+    _history = history;
   }
 
   /// [v] : verbose
@@ -59,7 +99,8 @@ class Log {
           message: message,
           logType: LogType.verbose,
           path: path,
-          time: _time ? time : time || _time));
+          time: _time ? time : time || _time,
+          history: _history));
     }
   }
 
@@ -77,7 +118,8 @@ class Log {
           message: message,
           logType: LogType.information,
           path: path,
-          time: _time ? time : time || _time));
+          time: _time ? time : time || _time,
+          history: _history));
     }
   }
 
@@ -95,7 +137,8 @@ class Log {
           message: message,
           logType: LogType.debug,
           path: path,
-          time: _time ? time : time || _time));
+          time: _time ? time : time || _time,
+          history: _history));
     }
   }
 
@@ -113,7 +156,8 @@ class Log {
           message: message,
           logType: LogType.warning,
           path: path,
-          time: _time ? time : time || _time));
+          time: _time ? time : time || _time,
+          history: _history));
     }
   }
 
@@ -131,7 +175,8 @@ class Log {
           message: message,
           logType: LogType.error,
           path: path,
-          time: _time ? time : time || _time));
+          time: _time ? time : time || _time,
+          history: _history));
     }
   }
 
@@ -151,7 +196,8 @@ class Log {
           message: message,
           logType: LogType.service,
           path: path,
-          time: _time ? time : time || _time));
+          time: _time ? time : time || _time,
+          history: _history));
     }
   }
 
@@ -169,21 +215,66 @@ class Log {
           message: message,
           logType: LogType.background,
           path: path,
-          time: _time ? time : time || _time));
+          time: _time ? time : time || _time,
+          history: _history));
     }
   }
 
   /// Android OS is not showing stdout console.
-  /// so use sdk to print function.
-  static void _consoleOutput(List<String> messages) async {
+  /// So use sdk to print function.
+  static void _consoleOutput(Map<String, List<String>> messageBundle) async {
     if (_isAndroid) {
-      for (String message in messages) {
+      for (String message in messageBundle[LogConstant.consoleMessages]!) {
         print(message);
+      }
+      if (messageBundle[LogConstant.streamMessages] != null) {
+        for (var message in messageBundle[LogConstant.streamMessages]!) {
+          if (_streamListener != null) {
+            _streamListener!(message);
+          }
+
+          if (_history) {
+            _historyBuffer.writeln(message);
+          }
+        }
       }
     } else {
       // @deprecated("iOS block console issue")
       // stdout.writeln(messages.first);
-      print(messages.first);
+      print(messageBundle[LogConstant.consoleMessages]!.first);
+
+      if (_streamListener != null) {
+        _streamListener!(messageBundle[LogConstant.streamMessages]!.first);
+      }
+
+      if (_history) {
+        _historyBuffer
+            .writeln(messageBundle[LogConstant.streamMessages]!.first);
+      }
     }
+  }
+
+  /// If you want remove [stream] function message.
+  /// [listen] into 'null'.
+  ///
+  /// [listen] is optional parameter.
+  ///
+  /// -
+  ///
+  /// You must not use flutter_logcat's function into listen function.
+  static void stream({required Function(String message) listen}) {
+    _streamListener = listen;
+  }
+
+  /// Clear [history] values.
+  static void clearHistory() {
+    _historyBuffer.clear();
+  }
+
+  /// Remove [stream] instance.
+  ///
+  /// And Don't receive message by [stream] parameter.
+  static void removeStream() {
+    _streamListener = null;
   }
 }

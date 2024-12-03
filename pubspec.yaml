@@ -1,8 +1,8 @@
 name: flutter_logcat
 description: "You can view messages in the console with colors that you define. Also set it to display tags, file paths, and timestamps"
 version: 1.2.6
-# homepage: https://donguran.com/pages/flutterlogcat
-repository: https://github.com/b3lon9/flutter_logcat
+# homepage: https://lagerstroemia.net/pages/flutterlogcat
+repository: https://github.com/hamhoney/flutter_logcat
 
 environment:
   sdk: '>=3.3.3 <4.0.0'

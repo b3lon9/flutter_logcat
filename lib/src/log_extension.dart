@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'log_const.dart';
+
 import 'log.dart';
 import 'log_type.dart';
 
@@ -16,6 +18,8 @@ extension LogExtension on Log {
       throw Exception();
     } catch (e, stackTrace) {
       final StackTrace trace = StackTrace.fromString(stackTrace.toString());
+      assert(!trace.toString().contains('_consoleOutput'),
+          'Do not used flutter_logcat\'s function in stream function. If you used in release mode. Don\'t get out of the infinity looper.');
       final String frame = trace.toString().split("\n")[3];
       return frame;
     }
@@ -29,17 +33,18 @@ extension LogExtension on Log {
   /// setting 10 * 1024 bytes.
   ///
   /// but I tried this safe range is limit 900 characters
-  static List<String> convert(
+  static Map<String, List<String>> convert(
       {required String tag,
       required String message,
       required LogType logType,
       required bool path,
-      required bool time}) {
-    RegExp regExp = RegExp(_regExp);
-    Match? match = regExp.firstMatch(_getFrame());
+      required bool time,
+      required bool history}) {
+    final RegExp regExp = RegExp(_regExp);
+    final Match? match = regExp.firstMatch(_getFrame());
 
     if (match != null) {
-      List<String> messages = [];
+      final List<String> messages = [];
       final String dateTime =
           time ? "${DateTime.now().toIso8601String()}:" : "";
       final tagName = tag.isNotEmpty ? "($tag) " : "";
@@ -60,14 +65,25 @@ extension LogExtension on Log {
         messages.add(message);
       }
 
-      return messages
-          .map(
-            (element) =>
-                "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $element${_isAndroid ? _endSequence : ""}",
-          )
-          .toList();
+      return {
+        LogConstant.consoleMessages: messages
+            .map(
+              (element) =>
+                  "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $element${_isAndroid ? _endSequence : ''}",
+            )
+            .toList(),
+        // if (history)
+        LogConstant.streamMessages: messages
+            .map(
+              (element) =>
+                  '$dateTime[${logType.name.toUpperCase()}]$tagName[$className$filePath:$lineNumber] $element',
+            )
+            .toList()
+      };
     } else {
-      return [message];
+      return {
+        LogConstant.consoleMessages: [message]
+      };
     }
   }
 
