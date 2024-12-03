@@ -25,10 +25,10 @@ In Console
 <br/>
 
 ## 📌 Features
-- [Usage](#-Usage)
-- [Configure](#-Set-Log-Configure)
-- [Stream](#-Stream-Logcat-messages)
-- [History](#-History-logcat-prints)
+- [Usage](#-usage)
+- [Configure](#-set-log-configure)
+- [Stream](#-stream-logcat-messages)
+- [History](#-history-logcat-prints)
 
 <br/>
 

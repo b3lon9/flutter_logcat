@@ -1,3 +1,6 @@
+## 1.2.8
+* Mod Description links.
+
 ## 1.2.7
 * Added `Stream`, `History` functions.
 
