@@ -24,6 +24,14 @@ In Console
 <br/>
 <br/>
 
+## 📌 Features
+- [Usage](#🚀-Usage)
+- [Configure](#🧭-Set-Log-Configure)
+- [Stream](#🌀-Stream-Logcat-messages)
+- [History](#📑-History-logcat-prints)
+
+<br/>
+
 ## 🌱 Getting Started
 
 [Install Package](https://pub.dev/packages/flutter_logcat/install/)
@@ -33,6 +41,7 @@ In Console
 - `tag`: Custom own your's tag name.  <br/>
 - `path`: You can watch file preference path. (default: false) <br/>
 - `time`: You can watch current time. (default: false) <br/>
+- `history`: You can call log history all prints. <br/>
 
 <br/>
 
@@ -45,6 +54,7 @@ In Console
 | tag                  | :x:                     | String             |             |  `(tag) [className:lineNumber] message`                       |
 | path                 | :x:                     | bool               |  false      |  `[className(packageName/className.dart):lineNumber] message` |
 | time                 | :x:                     | bool               |  false      |  `2024-09-25T00:00:000.000000:[className:linenumber] message` |
+| history              | :x:                     | bool               |  false      |  :x:                                                          |
 
 <br/>
 
@@ -172,4 +182,35 @@ Log.x("message from background");
 #### Android
 > <img src="https://github.com/user-attachments/assets/c9217399-af5e-42a4-bda1-1e7047df5690" alt="image" width="400">
 
+<br/>
+
+## 🌀 Stream Logcat messages
+```dart
+Log.stream(
+  listen: (message) {
+    print(message);
+  },
+);
+```
+
+#### remove Stream
+```dart
+Log.removeStream();
+```
+
+<br/>
+
+## 📑 History logcat prints
+If you want see again Log function datas that called `history` getter function. <br/>
+At first, You should define `history` parameter in `configure`function.
+```dart
+Log.configure(visible: .. , history: true);
+
+final String history = Log.history;
+```
+
+#### Clear History datas
+```dart
+Log.clearHistory();
+```
 <br/>
