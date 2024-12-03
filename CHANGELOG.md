@@ -1,3 +1,6 @@
+## 1.2.7
+* Added `Stream`, `History` functions.
+
 ## 1.2.6
 * Fix possible print for iOS & Others platforms.
 * Added iOS&Others description images.

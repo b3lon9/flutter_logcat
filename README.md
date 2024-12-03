@@ -36,7 +36,7 @@ In Console
 
 [Install Package](https://pub.dev/packages/flutter_logcat/install/)
 
-`flutter_logcat` need only three parameters there are `message`, `tag`, `path`, `time`  <br/>
+`flutter_logcat` need only three parameters there are `message`, `tag`, `path`, `time`, `history`.  <br/>
 - `message` : If yon want input message to watch on console.  <br/>
 - `tag`: Custom own your's tag name.  <br/>
 - `path`: You can watch file preference path. (default: false) <br/>
@@ -140,7 +140,8 @@ You only need to use it when an overall setup is required.</h4>
 
 > - visible <br/>
 > - tag <br/>
-> - time 
+> - time <br/>
+> - history
 
 - #### Control Visible👀 to Log.
 **`Log.configure(visible: [Boolean])`**
