@@ -1,3 +1,6 @@
+## 1.2.9
+* Remove `history` function(has Memory leak problem)
+
 ## 1.2.8
 * Mod Description links.
 

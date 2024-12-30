@@ -7,7 +7,7 @@ import 'log_type.dart';
 
 /// extension [Log]class functions
 extension LogExtension on Log {
-  static bool _isAndroid = Platform.isAndroid;
+  static bool _isANSII = Platform.isAndroid || Platform.isWindows;
 
   /// catch location
   ///
@@ -52,7 +52,7 @@ extension LogExtension on Log {
       final lineNumber = match.group(3);
 
       // Android console sentence length 1024 issue
-      if (_isAndroid) {
+      if (_isANSII) {
         int limitIndex = 900;
         for (int i = 0; i < message.length; i += limitIndex) {
           int end = (i + limitIndex < message.length)
@@ -68,7 +68,7 @@ extension LogExtension on Log {
         LogConstant.consoleMessages: messages
             .map(
               (element) =>
-                  "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $element${_isAndroid ? _endSequence : ''}",
+                  "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $element${_isANSII ? _endSequence : ''}",
             )
             .toList(),
         // if (history)
@@ -89,7 +89,7 @@ extension LogExtension on Log {
   /// ANSI ESCAPE SEQUENCE COLOR
   ///
   static String _ansiEscape(LogType logType) {
-    if (_isAndroid) {
+    if (_isANSII) {
       String escapeSequence = _endSequence;
       switch (logType) {
         case LogType.verbose:

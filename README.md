@@ -54,7 +54,6 @@ In Console
 | tag                  | :x:                     | String             |             |  `(tag) [className:lineNumber] message`                       |
 | path                 | :x:                     | bool               |  false      |  `[className(packageName/className.dart):lineNumber] message` |
 | time                 | :x:                     | bool               |  false      |  `2024-09-25T00:00:000.000000:[className:linenumber] message` |
-| history              | :x:                     | bool               |  false      |  :x:                                                          |
 
 <br/>
 
@@ -141,7 +140,7 @@ You only need to use it when an overall setup is required.</h4>
 > - visible <br/>
 > - tag <br/>
 > - time <br/>
-> - history
+
 
 - #### Control Visible👀 to Log.
 **`Log.configure(visible: [Boolean])`**
@@ -201,17 +200,3 @@ Log.removeStream();
 
 <br/>
 
-## 📑 History logcat prints
-If you want see again Log function datas that called `history` getter function. <br/>
-At first, You should define `history` parameter in `configure`function.
-```dart
-Log.configure(visible: .. , history: true);
-
-final String history = Log.history;
-```
-
-#### Clear History datas
-```dart
-Log.clearHistory();
-```
-<br/>

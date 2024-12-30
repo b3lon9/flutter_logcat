@@ -19,13 +19,17 @@ class Log {
   /// Additionally, you can configure it so that logs are hidden in debug mode(kDebugMode), and you can also set it to display [tag], [file] paths, and [time]stamps.
   Log._();
 
-  /// printing OK --
-  ///   Android, Window
+  /// printing 'OK'
+  ///   - Android
+  ///   - Window
   ///
-  /// printing NO --
-  ///   iOS
+  /// printing 'NO'
+  ///   - iOS
   ///
-  static bool _isAndroid = Platform.isAndroid;
+  /// Not Enabled 'Deprecated'
+  ///   - Web(Chrome)
+  ///   - Web(Edge)
+  static bool _isANSII = Platform.isAndroid || Platform.isWindows;
 
   /// [_visible] is console print Log visible.
   static bool _visible = true;
@@ -85,9 +89,7 @@ class Log {
   ///
   /// [history] : 2024-12-30-Mon, remove it.
   static void configure(
-      {required bool visible,
-      String tag = "",
-      bool time = false}) {
+      {required bool visible, String tag = "", bool time = false}) {
     _visible = visible;
     _tag = tag;
     _time = time;
@@ -105,11 +107,12 @@ class Log {
       {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
-          tag: tag.isEmpty ? _tag : tag,
-          message: message,
-          logType: LogType.verbose,
-          path: path,
-          time: _time ? time : time || _time,));
+        tag: tag.isEmpty ? _tag : tag,
+        message: message,
+        logType: LogType.verbose,
+        path: path,
+        time: _time ? time : time || _time,
+      ));
     }
   }
 
@@ -123,11 +126,12 @@ class Log {
       {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
-          tag: tag.isEmpty ? _tag : tag,
-          message: message,
-          logType: LogType.information,
-          path: path,
-          time: _time ? time : time || _time,));
+        tag: tag.isEmpty ? _tag : tag,
+        message: message,
+        logType: LogType.information,
+        path: path,
+        time: _time ? time : time || _time,
+      ));
     }
   }
 
@@ -141,11 +145,12 @@ class Log {
       {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
-          tag: tag.isEmpty ? _tag : tag,
-          message: message,
-          logType: LogType.debug,
-          path: path,
-          time: _time ? time : time || _time,));
+        tag: tag.isEmpty ? _tag : tag,
+        message: message,
+        logType: LogType.debug,
+        path: path,
+        time: _time ? time : time || _time,
+      ));
     }
   }
 
@@ -159,11 +164,12 @@ class Log {
       {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
-          tag: tag.isEmpty ? _tag : tag,
-          message: message,
-          logType: LogType.warning,
-          path: path,
-          time: _time ? time : time || _time,));
+        tag: tag.isEmpty ? _tag : tag,
+        message: message,
+        logType: LogType.warning,
+        path: path,
+        time: _time ? time : time || _time,
+      ));
     }
   }
 
@@ -177,11 +183,12 @@ class Log {
       {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
-          tag: tag.isEmpty ? _tag : tag,
-          message: message,
-          logType: LogType.error,
-          path: path,
-          time: _time ? time : time || _time,));
+        tag: tag.isEmpty ? _tag : tag,
+        message: message,
+        logType: LogType.error,
+        path: path,
+        time: _time ? time : time || _time,
+      ));
     }
   }
 
@@ -197,11 +204,12 @@ class Log {
       {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
-          tag: tag.isEmpty ? _tag : tag,
-          message: message,
-          logType: LogType.service,
-          path: path,
-          time: _time ? time : time || _time,));
+        tag: tag.isEmpty ? _tag : tag,
+        message: message,
+        logType: LogType.service,
+        path: path,
+        time: _time ? time : time || _time,
+      ));
     }
   }
 
@@ -215,18 +223,19 @@ class Log {
       {String tag = "", bool path = false, bool time = false}) {
     if (_visible) {
       _consoleOutput(LogExtension.convert(
-          tag: tag.isEmpty ? _tag : tag,
-          message: message,
-          logType: LogType.background,
-          path: path,
-          time: _time ? time : time || _time,));
+        tag: tag.isEmpty ? _tag : tag,
+        message: message,
+        logType: LogType.background,
+        path: path,
+        time: _time ? time : time || _time,
+      ));
     }
   }
 
   /// Android OS is not showing stdout console.
   /// So use sdk to print function.
   static void _consoleOutput(Map<String, List<String>> messageBundle) async {
-    if (_isAndroid) {
+    if (_isANSII) {
       for (String message in messageBundle[LogConstant.consoleMessages]!) {
         print(message);
       }
