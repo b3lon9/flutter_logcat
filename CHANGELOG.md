@@ -1,3 +1,6 @@
+## 1.2.10
+* Remove deprecated `history` description.
+
 ## 1.2.9
 * Remove `history` function(has Memory leak problem)
 

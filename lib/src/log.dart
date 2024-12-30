@@ -72,7 +72,7 @@ class Log {
   /// Maybe you want remove this, You can use [removeStream] function.
   static Function(String message)? _streamListener;
 
-  /// [history] stack
+  // [history] stack
   // @Deprecated('Memory leak problem')
   // static StringBuffer _historyBuffer = StringBuffer();
 
@@ -87,7 +87,7 @@ class Log {
   ///
   /// [time] : Show current Time [DateTime.now()] into log messages.
   ///
-  /// [history] : 2024-12-30-Mon, remove it.
+  // [history] : 2024-12-30-Mon, remove it.
   static void configure(
       {required bool visible, String tag = "", bool time = false}) {
     _visible = visible;
