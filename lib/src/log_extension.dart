@@ -38,8 +38,7 @@ extension LogExtension on Log {
       required String message,
       required LogType logType,
       required bool path,
-      required bool time,
-      required bool history}) {
+      required bool time}) {
     final RegExp regExp = RegExp(_regExp);
     final Match? match = regExp.firstMatch(_getFrame());
 

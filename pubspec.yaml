@@ -6,11 +6,11 @@ repository: https://github.com/hamhoney/flutter_logcat
 
 environment:
   sdk: '>=3.3.3 <4.0.0'
-  flutter: ">=1.17.0"
+  # flutter: ">=1.17.0"
 
-dependencies:
-  flutter:
-    sdk: flutter
+#dependencies:
+#  flutter:
+#    sdk: flutter
     
 screenshots:
   - description: log concatenate

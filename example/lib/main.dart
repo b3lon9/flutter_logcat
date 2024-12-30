@@ -168,17 +168,17 @@ class _ExampleScreenState extends State<ExampleScreen> {
                 child: Text('stream message OFF'),
               ),
               const Divider(),
-              ElevatedButton(
-                onPressed: () {
-                  final history = Log.history;
-                  debugPrint(history);
-                },
-                child: const Text('Get Log History'),
-              ),
-              const ElevatedButton(
-                onPressed: Log.clearHistory,
-                child: Text('Clear Log History'),
-              )
+              // ElevatedButton(
+              //   onPressed: () {
+              //     final history = Log.history;
+              //     debugPrint(history);
+              //   },
+              //   child: const Text('Get Log History'),
+              // ),
+              // const ElevatedButton(
+              //   onPressed: Log.clearHistory,
+              //   child: Text('Clear Log History'),
+              // )
             ],
           ),
         ),

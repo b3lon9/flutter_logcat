@@ -18,6 +18,13 @@ class Log {
   ///
   /// Additionally, you can configure it so that logs are hidden in debug mode(kDebugMode), and you can also set it to display [tag], [file] paths, and [time]stamps.
   Log._();
+
+  /// printing OK --
+  ///   Android, Window
+  ///
+  /// printing NO --
+  ///   iOS
+  ///
   static bool _isAndroid = Platform.isAndroid;
 
   /// [_visible] is console print Log visible.
@@ -30,6 +37,7 @@ class Log {
   static bool _time = false;
 
   /// [_history] has print String messages.
+  @Deprecated('Memory leak problem.')
   static bool _history = false;
 
   /// Stacked your [Log] values.
@@ -43,12 +51,14 @@ class Log {
   /// ```dart
   /// Log.configure(visible: kDebugMode, history: true);
   /// ```
+  @Deprecated('Memory leak problem.')
   static String get history {
     assert(
         _history,
         'Please define Log.configure function\'s history to set \'true\'.\n'
         '`Log.configure(visible: kDebugMode, history: true);`');
-    return _historyBuffer.toString();
+    // return _historyBuffer.toString();
+    return throw Exception('history() function deprecated');
   }
 
   /// [stream] function parameter.
@@ -59,7 +69,8 @@ class Log {
   static Function(String message)? _streamListener;
 
   /// [history] stack
-  static StringBuffer _historyBuffer = StringBuffer();
+  // @Deprecated('Memory leak problem')
+  // static StringBuffer _historyBuffer = StringBuffer();
 
   /// It's okay if you don't declare this function.
   /// You only need to use it when an overall setup is required.
@@ -72,16 +83,15 @@ class Log {
   ///
   /// [time] : Show current Time [DateTime.now()] into log messages.
   ///
-  /// [history] :
+  /// [history] : 2024-12-30-Mon, remove it.
   static void configure(
       {required bool visible,
       String tag = "",
-      bool time = false,
-      bool history = false}) {
+      bool time = false}) {
     _visible = visible;
     _tag = tag;
     _time = time;
-    _history = history;
+    // _history = history;
   }
 
   /// [v] : verbose
@@ -99,8 +109,7 @@ class Log {
           message: message,
           logType: LogType.verbose,
           path: path,
-          time: _time ? time : time || _time,
-          history: _history));
+          time: _time ? time : time || _time,));
     }
   }
 
@@ -118,8 +127,7 @@ class Log {
           message: message,
           logType: LogType.information,
           path: path,
-          time: _time ? time : time || _time,
-          history: _history));
+          time: _time ? time : time || _time,));
     }
   }
 
@@ -137,8 +145,7 @@ class Log {
           message: message,
           logType: LogType.debug,
           path: path,
-          time: _time ? time : time || _time,
-          history: _history));
+          time: _time ? time : time || _time,));
     }
   }
 
@@ -156,8 +163,7 @@ class Log {
           message: message,
           logType: LogType.warning,
           path: path,
-          time: _time ? time : time || _time,
-          history: _history));
+          time: _time ? time : time || _time,));
     }
   }
 
@@ -175,8 +181,7 @@ class Log {
           message: message,
           logType: LogType.error,
           path: path,
-          time: _time ? time : time || _time,
-          history: _history));
+          time: _time ? time : time || _time,));
     }
   }
 
@@ -196,8 +201,7 @@ class Log {
           message: message,
           logType: LogType.service,
           path: path,
-          time: _time ? time : time || _time,
-          history: _history));
+          time: _time ? time : time || _time,));
     }
   }
 
@@ -215,8 +219,7 @@ class Log {
           message: message,
           logType: LogType.background,
           path: path,
-          time: _time ? time : time || _time,
-          history: _history));
+          time: _time ? time : time || _time,));
     }
   }
 
@@ -233,9 +236,9 @@ class Log {
             _streamListener!(message);
           }
 
-          if (_history) {
-            _historyBuffer.writeln(message);
-          }
+          // if (_history) {
+          //   _historyBuffer.writeln(message);
+          // }
         }
       }
     } else {
@@ -247,10 +250,10 @@ class Log {
         _streamListener!(messageBundle[LogConstant.streamMessages]!.first);
       }
 
-      if (_history) {
-        _historyBuffer
-            .writeln(messageBundle[LogConstant.streamMessages]!.first);
-      }
+      // if (_history) {
+      //   _historyBuffer
+      //       .writeln(messageBundle[LogConstant.streamMessages]!.first);
+      // }
     }
   }
 
@@ -267,8 +270,9 @@ class Log {
   }
 
   /// Clear [history] values.
+  @Deprecated('History will get to memory leak problem')
   static void clearHistory() {
-    _historyBuffer.clear();
+    // _historyBuffer.clear();
   }
 
   /// Remove [stream] instance.
