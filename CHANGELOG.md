@@ -1,3 +1,6 @@
+## 1.3.1
+* Added Stream - Subscrition.
+
 ## 1.3.0
 * Mod to display logs in Dart code.
 
