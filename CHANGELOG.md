@@ -1,3 +1,6 @@
+## 1.3.0
+* Mod to display logs in Dart code.
+
 ## 1.2.10
 * Remove deprecated `history` description.
 

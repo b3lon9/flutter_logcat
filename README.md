@@ -98,11 +98,11 @@ Log.e("message", path: true);
 - ### Show 'message' & 'tag'
 **`Log.v([String], tag: [String])`**
 ```dart
-Log.v("message", tag: "donguran");
-Log.i("message", tag: "donguran");
-Log.d("message", tag: "donguran");
-Log.w("message", tag: "donguran");
-Log.e("message", tag: "donguran");
+Log.v("message", tag: "FlutterLogcat");
+Log.i("message", tag: "FlutterLogcat");
+Log.d("message", tag: "FlutterLogcat");
+Log.w("message", tag: "FlutterLogcat");
+Log.e("message", tag: "FlutterLogcat");
 ```
 
 #### iOS & Others
@@ -152,7 +152,7 @@ Log.configure(visible: kDebugMode);
 - #### If you want setting default `tag` 
 **`Log.configure(visible: [Boolean], tag: [String])`**
 ```dart
-Log.configure(visible: kDebugMode, tag: "donguran");
+Log.configure(visible: kDebugMode, tag: "FlutterLogcat");
 
 Log.v(...);
 Log.i(...);

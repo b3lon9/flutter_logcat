@@ -13,6 +13,7 @@ extension LogExtension on Log {
   ///
   /// through StackTrace class.
   /// return frame String type
+  ///
   static String _getFrame() {
     try {
       throw Exception();
@@ -33,14 +34,15 @@ extension LogExtension on Log {
   /// setting 10 * 1024 bytes.
   ///
   /// but I tried this safe range is limit 900 characters
+  ///
   static Map<String, List<String>> convert(
       {required String tag,
       required String message,
       required LogType logType,
       required bool path,
       required bool time}) {
-    final RegExp regExp = RegExp(_regExp);
-    final Match? match = regExp.firstMatch(_getFrame());
+    RegExp regExp = RegExp(_regExp);
+    Match? match = regExp.firstMatch(_getFrame());
 
     if (match != null) {
       final List<String> messages = [];
@@ -80,9 +82,51 @@ extension LogExtension on Log {
             .toList()
       };
     } else {
-      return {
-        LogConstant.consoleMessages: [message]
-      };
+      regExp = RegExp(_regExpDartCode);
+      Match? match = regExp.firstMatch(_getFrame());
+
+      if (match != null) {
+        final List<String> messages = [];
+        final String dateTime =
+            time ? "${DateTime.now().toIso8601String()}:" : "";
+        final tagName = tag.isNotEmpty ? "($tag) " : "";
+        final className = match.group(1);
+        final filePath = path ? "(${match.group(2)})" : "";
+        final lineNumber = match.group(3);
+
+        // Android console sentence length 1024 issue
+        if (_isANSII) {
+          int limitIndex = 900;
+          for (int i = 0; i < message.length; i += limitIndex) {
+            int end = (i + limitIndex < message.length)
+                ? i + limitIndex
+                : message.length;
+            messages.add(message.substring(i, end));
+          }
+        } else {
+          messages.add(message);
+        }
+
+        return {
+          LogConstant.consoleMessages: messages
+              .map(
+                (element) =>
+                    "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $element${_isANSII ? _endSequence : ''}",
+              )
+              .toList(),
+          // if (history)
+          LogConstant.streamMessages: messages
+              .map(
+                (element) =>
+                    '$dateTime[${logType.name.toUpperCase()}]$tagName[$className$filePath:$lineNumber] $element',
+              )
+              .toList()
+        };
+      } else {
+        return {
+          LogConstant.consoleMessages: [message]
+        };
+      }
     }
   }
 
@@ -156,6 +200,7 @@ extension LogExtension on Log {
 // @Deprecated("don't use this. StackTrace catch another.")
 // const String _regBuildExp = r'(\w+)\.build.*package:([^:]+):(\d+):';
 const String _regExp = r'(\w+)\..*package:([^:]+):(\d+):';
+const String _regExpDartCode = r'(\w+)\s+\(.*\/([\w\.]+):(\d+):';
 
 const String _endSequence = "\x1B[0m";
 const String _verboseSequence = "\x1B[97m";

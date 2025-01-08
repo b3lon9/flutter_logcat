@@ -47,31 +47,31 @@ class _ExampleScreenState extends State<ExampleScreen> {
               const Divider(),
               ElevatedButton(
                 onPressed: () {
-                  Log.v("onPressed..", tag: "donguran", path: true);
+                  Log.v("onPressed..", tag: "FlutterLogcat", path: true);
                 },
                 child: const Text("verbose"),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Log.i("onPressed..", tag: "donguran", path: true);
+                  Log.i("onPressed..", tag: "FlutterLogcat", path: true);
                 },
                 child: const Text("information"),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Log.d("onPressed..", tag: "donguran", path: true);
+                  Log.d("onPressed..", tag: "FlutterLogcat", path: true);
                 },
                 child: const Text("debug"),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Log.w("onPressed..", tag: "donguran", path: true);
+                  Log.w("onPressed..", tag: "FlutterLogcat", path: true);
                 },
                 child: const Text("warning"),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Log.e("onPressed..", tag: "donguran", path: true);
+                  Log.e("onPressed..", tag: "FlutterLogcat", path: true);
                 },
                 child: const Text("error"),
               ),
@@ -110,11 +110,11 @@ class _ExampleScreenState extends State<ExampleScreen> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Log.v("message", tag: "donguran");
-                  Log.i("message", tag: "donguran");
-                  Log.d("message", tag: "donguran");
-                  Log.w("message", tag: "donguran");
-                  Log.e("message", tag: "donguran");
+                  Log.v("message", tag: "FlutterLogcat");
+                  Log.i("message", tag: "FlutterLogcat");
+                  Log.d("message", tag: "FlutterLogcat");
+                  Log.w("message", tag: "FlutterLogcat");
+                  Log.e("message", tag: "FlutterLogcat");
                 },
                 child: const Text("put 'tag' parameter"),
               ),
