@@ -186,16 +186,14 @@ Log.x("message from background");
 
 ## 🌀 Stream Logcat messages
 ```dart
-Log.stream(
-  listen: (message) {
-    print(message);
-  },
+final subscription = Log.stream.listen(
+  (message) => print('message:$message'),   // Save Log Record.
 );
 ```
 
-#### remove Stream
+#### Stop Stream
 ```dart
-Log.removeStream();
+Log.stopStream();   // or `dispose()` function.
 ```
 
 <br/>

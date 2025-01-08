@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_logcat/flutter_logcat.dart';
 
 void main() {
-  Log.configure(visible: kDebugMode, time: true);
+  Log.configure(visible: kDebugMode);
   // Log.configure(visible: kDebugMode, tag: "Lagerstroemia");
 
   runApp(const MaterialApp(home: Scaffold(body: ExampleScreen())));
@@ -32,6 +32,12 @@ class _ExampleScreenState extends State<ExampleScreen> {
     Log.d("initState.. debug..");
     Log.w("initState.. warning..");
     Log.e("initState.. error..");
+  }
+
+  @override
+  void dispose() {
+    Log.dispose();
+    super.dispose();
   }
 
   @override
@@ -155,16 +161,20 @@ class _ExampleScreenState extends State<ExampleScreen> {
               const Divider(),
               ElevatedButton(
                 onPressed: () {
-                  Log.stream(
-                    listen: (message) {
-                      print(message);
+                  final subscription = Log.stream.listen(
+                    (event) => print('event... evnet:$event'),
+                    onDone: () {
+                      print('event... onDone..');
                     },
                   );
+
                 },
                 child: Text('stream message ON'),
               ),
-              const ElevatedButton(
-                onPressed: Log.removeStream,
+              ElevatedButton(
+                onPressed: () {
+                  Log.streamStop();
+                },
                 child: Text('stream message OFF'),
               ),
               const Divider(),

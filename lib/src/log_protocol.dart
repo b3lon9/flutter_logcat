@@ -1,3 +1,5 @@
+import 'dart:async';
+
 interface class LogProtocol {
   void configure({required bool visible, String tag = "", bool time = false}) =>
       UnimplementedError('configure() has not been implemented.');
@@ -16,5 +18,5 @@ interface class LogProtocol {
   void x(String message, {String tag = "", bool path = false, bool? time}) =>
       UnimplementedError('background() has not been implemented.');
 
-  Function(String message)? streamListener;
+  StreamController<String>? streamController;
 }

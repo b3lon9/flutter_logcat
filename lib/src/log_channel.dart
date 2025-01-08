@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'log_const.dart';
@@ -63,7 +64,7 @@ class LogChannel implements LogProtocol {
   ///
   /// Maybe you want remove this, You can use [removeStream] function.
   @override
-  Function(String message)? streamListener;
+  StreamController<String>? streamController;
 
   @override
   void configure({required bool visible, String tag = "", bool time = false}) {
@@ -165,9 +166,7 @@ class LogChannel implements LogProtocol {
       }
       if (messageBundle[LogConstant.streamMessages] != null) {
         for (var message in messageBundle[LogConstant.streamMessages]!) {
-          if (streamListener != null) {
-            streamListener!(message);
-          }
+          streamController?.add(message);
 
           // if (_history) {
           //   _historyBuffer.writeln(message);
@@ -179,10 +178,7 @@ class LogChannel implements LogProtocol {
       // stdout.writeln(messages.first);
       print(messageBundle[LogConstant.consoleMessages]!.first);
 
-      if (streamListener != null) {
-        streamListener!(messageBundle[LogConstant.streamMessages]!.first);
-      }
-
+      streamController?.add(messageBundle[LogConstant.streamMessages]!.first);
       // if (_history) {
       //   _historyBuffer
       //       .writeln(messageBundle[LogConstant.streamMessages]!.first);

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'log_channel.dart';
 
 /// If you want see to [visible], [tag], [time].
@@ -153,8 +155,14 @@ class Log {
   /// -
   ///
   /// You must not use flutter_logcat's function into listen function.
-  static void stream({required Function(String message) listen}) {
-    _channel.streamListener = listen;
+  ///
+  /// Changed [StreamSubscription].
+  ///
+  static Stream<String> get stream {
+    if (_channel.streamController == null) {
+      _channel.streamController = StreamController<String>.broadcast();
+    }
+    return _channel.streamController!.stream;
   }
 
   /// Clear [history] values.
@@ -166,7 +174,22 @@ class Log {
   /// Remove [stream] instance.
   ///
   /// And Don't receive message by [stream] parameter.
+  @Deprecated('insteand of dispose() function.')
   static void removeStream() {
-    _channel.streamListener = null;
+    assert(false,
+        '`removeStream()` is not use anymore. instead of `streamStop()` function.');
+  }
+
+  /// Remove Stream.
+  ///
+  static void streamStop() async {
+    _channel.streamController?.close();
+    _channel.streamController = null;
+  }
+
+  /// Like [streamStop] function.
+  ///
+  static void dispose() {
+    streamStop();
   }
 }
