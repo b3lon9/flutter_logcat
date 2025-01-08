@@ -1,27 +1,26 @@
-import 'dart:io';
-
-import 'log_const.dart';
+import 'log_channel.dart';
 
 import 'log.dart';
+import 'log_const.dart';
 import 'log_type.dart';
 
 /// extension [Log]class functions
-extension LogExtension on Log {
-  static bool _isANSII = Platform.isAndroid || Platform.isWindows;
-
+extension LogExtension on LogChannel {
   /// catch location
   ///
   /// through StackTrace class.
   /// return frame String type
   ///
-  static String _getFrame() {
+  /// [version: 1.3.1] use trace split[4]
+  ///
+  String _getFrame() {
     try {
       throw Exception();
     } catch (e, stackTrace) {
       final StackTrace trace = StackTrace.fromString(stackTrace.toString());
       assert(!trace.toString().contains('_consoleOutput'),
           'Do not used flutter_logcat\'s function in stream function. If you used in release mode. Don\'t get out of the infinity looper.');
-      final String frame = trace.toString().split("\n")[3];
+      final String frame = trace.toString().split("\n")[4];
       return frame;
     }
   }
@@ -35,7 +34,7 @@ extension LogExtension on Log {
   ///
   /// but I tried this safe range is limit 900 characters
   ///
-  static Map<String, List<String>> convert(
+  Map<String, List<String>> convert(
       {required String tag,
       required String message,
       required LogType logType,
@@ -54,7 +53,7 @@ extension LogExtension on Log {
       final lineNumber = match.group(3);
 
       // Android console sentence length 1024 issue
-      if (_isANSII) {
+      if (isANSII) {
         int limitIndex = 900;
         for (int i = 0; i < message.length; i += limitIndex) {
           int end = (i + limitIndex < message.length)
@@ -70,7 +69,7 @@ extension LogExtension on Log {
         LogConstant.consoleMessages: messages
             .map(
               (element) =>
-                  "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $element${_isANSII ? _endSequence : ''}",
+                  "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $element${isANSII ? _endSequence : ''}",
             )
             .toList(),
         // if (history)
@@ -95,7 +94,7 @@ extension LogExtension on Log {
         final lineNumber = match.group(3);
 
         // Android console sentence length 1024 issue
-        if (_isANSII) {
+        if (isANSII) {
           int limitIndex = 900;
           for (int i = 0; i < message.length; i += limitIndex) {
             int end = (i + limitIndex < message.length)
@@ -111,7 +110,7 @@ extension LogExtension on Log {
           LogConstant.consoleMessages: messages
               .map(
                 (element) =>
-                    "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $element${_isANSII ? _endSequence : ''}",
+                    "$dateTime${_ansiEscape(logType)}$tagName[$className$filePath:$lineNumber] $element${isANSII ? _endSequence : ''}",
               )
               .toList(),
           // if (history)
@@ -132,8 +131,8 @@ extension LogExtension on Log {
 
   /// ANSI ESCAPE SEQUENCE COLOR
   ///
-  static String _ansiEscape(LogType logType) {
-    if (_isANSII) {
+  String _ansiEscape(LogType logType) {
+    if (isANSII) {
       String escapeSequence = _endSequence;
       switch (logType) {
         case LogType.verbose:

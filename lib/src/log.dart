@@ -1,9 +1,4 @@
-import 'dart:io';
-
-import '/src/log_const.dart';
-
-import 'log_extension.dart';
-import 'log_type.dart';
+import 'log_channel.dart';
 
 /// If you want see to [visible], [tag], [time].
 /// Use [configure] function.
@@ -19,30 +14,13 @@ class Log {
   /// Additionally, you can configure it so that logs are hidden in debug mode(kDebugMode), and you can also set it to display [tag], [file] paths, and [time]stamps.
   Log._();
 
-  /// printing 'OK'
-  ///   - Android
-  ///   - Window
-  ///
-  /// printing 'NO'
-  ///   - iOS
-  ///
-  /// Not Enabled 'Deprecated'
-  ///   - Web(Chrome)
-  ///   - Web(Edge)
-  static bool _isANSII = Platform.isAndroid || Platform.isWindows;
-
-  /// [_visible] is console print Log visible.
-  static bool _visible = true;
-
-  /// [_tag] default tag setting.
-  static String _tag = "";
-
-  /// [_time] is console print time visible.
-  static bool _time = false;
-
   /// [_history] has print String messages.
   @Deprecated('Memory leak problem.')
   static bool _history = false;
+
+  /// Management Log instance
+  ///
+  static LogChannel _channel = LogChannel();
 
   /// Stacked your [Log] values.
   ///
@@ -65,13 +43,6 @@ class Log {
     return throw Exception('history() function deprecated');
   }
 
-  /// [stream] function parameter.
-  ///
-  /// Deliver message into [stream] argument.
-  ///
-  /// Maybe you want remove this, You can use [removeStream] function.
-  static Function(String message)? _streamListener;
-
   // [history] stack
   // @Deprecated('Memory leak problem')
   // static StringBuffer _historyBuffer = StringBuffer();
@@ -90,9 +61,7 @@ class Log {
   // [history] : 2024-12-30-Mon, remove it.
   static void configure(
       {required bool visible, String tag = "", bool time = false}) {
-    _visible = visible;
-    _tag = tag;
-    _time = time;
+    _channel.configure(visible: visible, tag: tag, time: time);
     // _history = history;
   }
 
@@ -104,16 +73,8 @@ class Log {
   /// [path] Where his log implemented.
   /// [time] Visible Current DateTime
   static void v(String message,
-      {String tag = "", bool path = false, bool time = false}) {
-    if (_visible) {
-      _consoleOutput(LogExtension.convert(
-        tag: tag.isEmpty ? _tag : tag,
-        message: message,
-        logType: LogType.verbose,
-        path: path,
-        time: _time ? time : time || _time,
-      ));
-    }
+      {String tag = "", bool path = false, bool? time}) {
+    _channel.v(message, tag: tag, path: path, time: time);
   }
 
   /// [i] : information
@@ -123,16 +84,8 @@ class Log {
   /// [path] Where his log implemented.
   /// [time] Visible Current DateTime
   static void i(String message,
-      {String tag = "", bool path = false, bool time = false}) {
-    if (_visible) {
-      _consoleOutput(LogExtension.convert(
-        tag: tag.isEmpty ? _tag : tag,
-        message: message,
-        logType: LogType.information,
-        path: path,
-        time: _time ? time : time || _time,
-      ));
-    }
+      {String tag = "", bool path = false, bool? time}) {
+    _channel.i(message, tag: tag, path: path, time: time);
   }
 
   /// [d] : debug
@@ -142,16 +95,8 @@ class Log {
   /// [path] Where his log implemented.
   /// [time] Visible Current DateTime
   static void d(String message,
-      {String tag = "", bool path = false, bool time = false}) {
-    if (_visible) {
-      _consoleOutput(LogExtension.convert(
-        tag: tag.isEmpty ? _tag : tag,
-        message: message,
-        logType: LogType.debug,
-        path: path,
-        time: _time ? time : time || _time,
-      ));
-    }
+      {String tag = "", bool path = false, bool? time}) {
+    _channel.d(message, tag: tag, path: path, time: time);
   }
 
   /// [w] : warning
@@ -161,16 +106,8 @@ class Log {
   /// [path] Where his log implemented.
   /// [time] Visible Current DateTime
   static void w(String message,
-      {String tag = "", bool path = false, bool time = false}) {
-    if (_visible) {
-      _consoleOutput(LogExtension.convert(
-        tag: tag.isEmpty ? _tag : tag,
-        message: message,
-        logType: LogType.warning,
-        path: path,
-        time: _time ? time : time || _time,
-      ));
-    }
+      {String tag = "", bool path = false, bool? time}) {
+    _channel.w(message, tag: tag, path: path, time: time);
   }
 
   /// [e] : error
@@ -180,16 +117,8 @@ class Log {
   /// [path] Where his log implemented.
   /// [time] Visible Current DateTime
   static void e(String message,
-      {String tag = "", bool path = false, bool time = false}) {
-    if (_visible) {
-      _consoleOutput(LogExtension.convert(
-        tag: tag.isEmpty ? _tag : tag,
-        message: message,
-        logType: LogType.error,
-        path: path,
-        time: _time ? time : time || _time,
-      ));
-    }
+      {String tag = "", bool path = false, bool? time}) {
+    _channel.e(message, tag: tag, path: path, time: time);
   }
 
   /// [s] : service
@@ -201,16 +130,8 @@ class Log {
   /// [path] Where his log implemented.
   /// [time] Visible Current DateTime
   static void s(String message,
-      {String tag = "", bool path = false, bool time = false}) {
-    if (_visible) {
-      _consoleOutput(LogExtension.convert(
-        tag: tag.isEmpty ? _tag : tag,
-        message: message,
-        logType: LogType.service,
-        path: path,
-        time: _time ? time : time || _time,
-      ));
-    }
+      {String tag = "", bool path = false, bool? time}) {
+    _channel.s(message, tag: tag, path: path, time: time);
   }
 
   /// [x] : background
@@ -220,50 +141,8 @@ class Log {
   /// [path] Where his log implemented.
   /// [time] Visible Current DateTime
   static void x(String message,
-      {String tag = "", bool path = false, bool time = false}) {
-    if (_visible) {
-      _consoleOutput(LogExtension.convert(
-        tag: tag.isEmpty ? _tag : tag,
-        message: message,
-        logType: LogType.background,
-        path: path,
-        time: _time ? time : time || _time,
-      ));
-    }
-  }
-
-  /// Android OS is not showing stdout console.
-  /// So use sdk to print function.
-  static void _consoleOutput(Map<String, List<String>> messageBundle) async {
-    if (_isANSII) {
-      for (String message in messageBundle[LogConstant.consoleMessages]!) {
-        print(message);
-      }
-      if (messageBundle[LogConstant.streamMessages] != null) {
-        for (var message in messageBundle[LogConstant.streamMessages]!) {
-          if (_streamListener != null) {
-            _streamListener!(message);
-          }
-
-          // if (_history) {
-          //   _historyBuffer.writeln(message);
-          // }
-        }
-      }
-    } else {
-      // @deprecated("iOS block console issue")
-      // stdout.writeln(messages.first);
-      print(messageBundle[LogConstant.consoleMessages]!.first);
-
-      if (_streamListener != null) {
-        _streamListener!(messageBundle[LogConstant.streamMessages]!.first);
-      }
-
-      // if (_history) {
-      //   _historyBuffer
-      //       .writeln(messageBundle[LogConstant.streamMessages]!.first);
-      // }
-    }
+      {String tag = "", bool path = false, bool? time}) {
+    _channel.x(message, tag: tag, path: path, time: time);
   }
 
   /// If you want remove [stream] function message.
@@ -275,7 +154,7 @@ class Log {
   ///
   /// You must not use flutter_logcat's function into listen function.
   static void stream({required Function(String message) listen}) {
-    _streamListener = listen;
+    _channel.streamListener = listen;
   }
 
   /// Clear [history] values.
@@ -288,6 +167,6 @@ class Log {
   ///
   /// And Don't receive message by [stream] parameter.
   static void removeStream() {
-    _streamListener = null;
+    _channel.streamListener = null;
   }
 }
